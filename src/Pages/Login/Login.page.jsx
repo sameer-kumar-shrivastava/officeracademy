@@ -66,7 +66,7 @@ const Login = () => {
         />
         <button type="submit">Login</button>
       </form>
-      <Link to="/password-reset"> <button>Forgot Password?</button> </Link>
+      <button><Link to="/password-reset">Forgot Password?</Link></button>
       <button onClick={handleGoogleLogin}>Login with Google</button>
       {error && <p>{error}</p>}
     </div>
