@@ -19,24 +19,27 @@ const MyNotes = () => {
 
     useEffect(() => {
         // Fetch PDFs from Firebase Storage
-        const fetchPdfs = async () => {
-            try {
-                const storageRef = firebase.storage().ref('MyNotes'); // Replace 'MyNotes' with the correct path to your PDFs folder in Firebase Storage
-                const listResult = await storageRef.listAll();
-                const pdfList = listResult.items.map((item) => {
-                    return {
-                        name: item.name,
-                        url: item.getDownloadURL(), // Get the download URL for each PDF
-                    };
-                });
-                setPdfs(pdfList);
-            } catch (error) {
-                console.error('Error fetching PDFs:', error);
-            }
-        };
-
-        fetchPdfs();
+    const fetchPdfs = async () => {
+        const storageRef = firebase.storage().ref();
+        const pdfsFolderRef = storageRef.child('MyNotes'); // Replace 'MyNotes' with the correct path to your PDFs folder in Firebase Storage
+  
+        try {
+          const pdfFiles = await pdfsFolderRef.listAll();
+          const pdfList = await Promise.all(
+            pdfFiles.items.map(async (item) => {
+              const url = await item.getDownloadURL();
+              return { name: item.name, url };
+            })
+          );
+          setPdfs(pdfList);
+        } catch (error) {
+          console.error('Error fetching PDFs:', error);
+        }
+      };
+  
+      fetchPdfs();
     }, []);
+  
 
     const handleDownload = (pdf) => {
         // Create a hidden link and simulate a click to trigger the download.
@@ -44,7 +47,7 @@ const MyNotes = () => {
         a.href = pdf.url;
         a.download = pdf.name;
         a.click();
-      };
+    };
 
 
     return (<>
