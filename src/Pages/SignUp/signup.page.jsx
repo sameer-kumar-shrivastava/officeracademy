@@ -37,9 +37,7 @@ const SignUp = () => {
       //   .catch((error) => {
       //     console.error("Error writing document: ", error);
       //   });
-      <script>
-        alert("Congratulations, You are signed in");
-      </script>
+      
 
       // Signup successful, you can redirect the user to the desired page here.
     } catch (error) {

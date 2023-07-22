@@ -51,7 +51,7 @@ const Login = () => {
       <p>
         Don't have an account? <Link to="/signup">Sign up</Link>
       </p>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin}>        
         <input
           type="email"
           placeholder="Email"
