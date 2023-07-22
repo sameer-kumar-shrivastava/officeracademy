@@ -2,6 +2,7 @@
 import firebase from 'firebase/compat/app'; // Correct way to import Firebase in version 9 (v9) and above
 import 'firebase/compat/auth'; // Import the specific authentication module
 import 'firebase/compat/firestore';
+import 'firebase/compat/storage';
 
 
 const firebaseConfig = {
