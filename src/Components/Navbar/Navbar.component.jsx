@@ -27,6 +27,12 @@ const Navbar = () => {
             <Link to="/privacy">Privacy Policy</Link>
           </li>
           <li>
+            <Link to="/events">Events</Link>
+          </li>
+          <li>
+            <Link to="/blogs">Blogs</Link>
+          </li>
+          <li>
             <Link to="/mynotes">My Notes</Link>
           </li>
           {isLoggedIn ? (
