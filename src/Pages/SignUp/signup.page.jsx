@@ -8,7 +8,7 @@ const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [error] = useState('');
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ const SignUp = () => {
       <script>alert("Congratulations, You are regisered")</script>
 
       // Get the newly created user's unique ID (UID)
-      const userId = userCredential.user.uid;
+      // const userId = userCredential.user.uid;
 
       await userCredential.user.updateProfile({
         displayName: name,
