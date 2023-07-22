@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import firebase from '../../firebase';
 import { Link, useNavigate } from 'react-router-dom';
+import './Login.styles.scss';
+import GoogleLogo from './googlelogo.png';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -16,14 +18,14 @@ const Login = () => {
       console.log("Login successful");
       navigate('/');
       <script>
-      function myFunction() {
+        function myFunction() {
           alert("You are logged in")
-      }
+        }
       </script>
     } catch (error) {
-        setError(error.message);
+      setError(error.message);
       console.error('Error logging in:', error);
-         
+
     }
   };
 
@@ -46,29 +48,42 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="login-container-page">
+    <div className="login-container">
       <h2>Login</h2>
       <p>
         Don't have an account? <Link to="/signup">Sign up</Link>
       </p>
-      <form onSubmit={handleLogin}>        
+      <form onSubmit={handleLogin} className="login-form">
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          className="login-input"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="login-input"
         />
-        <button type="submit">Login</button>
+        <button type="submit" className="login-button">
+          Login
+        </button>
       </form>
-      <button><Link to="/password-reset">Forgot Password?</Link></button>
-      <button onClick={handleGoogleLogin}>Login with Google</button>
-      {error && <p>{error}</p>}
+      <button className="forgot-button">
+        <Link to="/password-reset" className="forgot-link">
+          Forgot Password?
+        </Link>
+      </button>
+      <button onClick={handleGoogleLogin} className="google-button">
+        <img src={GoogleLogo} alt="Google" className="google-icon" />
+        Login with Google
+      </button>
+      {error && <p className="error-message">{error}</p>}
+    </div>
     </div>
   );
 };
