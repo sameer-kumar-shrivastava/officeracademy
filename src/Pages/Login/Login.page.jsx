@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import firebase from '../../firebase';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -13,6 +14,7 @@ const Login = () => {
       await firebase.auth().signInWithEmailAndPassword(email, password);
       // Login successful, you can redirect the user to the desired page here.
       console.log("Login successful");
+      navigate('/');
       <script>
       function myFunction() {
           alert("You are logged in")
@@ -25,13 +27,22 @@ const Login = () => {
     }
   };
 
-  const handlePasswordReset = async () => {
-    try {
-      await firebase.auth().sendPasswordResetEmail(email);
-      alert('Password reset email sent. Please check your email inbox.');
-    } catch (error) {
-      console.error('Error sending password reset email:', error);
-    }
+  const handleGoogleLogin = () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        // The user is signed in with Google successfully.
+        // You can access the user's data through result.user, e.g.:
+        // const user = result.user;
+        navigate('/');
+      })
+      .catch((error) => {
+        // Handle errors that might occur during the sign-in process.
+        console.error('Google sign-in error:', error);
+      });
   };
 
   return (
@@ -56,6 +67,7 @@ const Login = () => {
         <button type="submit">Login</button>
       </form>
       <Link to="/password-reset"> <button>Forgot Password?</button> </Link>
+      <button onClick={handleGoogleLogin}>Login with Google</button>
       {error && <p>{error}</p>}
     </div>
   );

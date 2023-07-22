@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar.component';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './AuthContext';
 import ProtectedRoute from './protectedRoute';
 
 import firebase from './firebase.js';
@@ -27,20 +28,21 @@ function App() {
 
 
   return (
-
+    <AuthProvider>
       <Router>
-      <Navbar user={user}/>
-      <Routes>
-        <Route path="/"  element={<Home/>} />
-        <Route path="/about" element={<About/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route exact path="/signup" element={<SignUp />} />
-        <Route exact path="/password-reset" element={<PasswordReset />} />
-        {/* <ProtectedRoute exact path="/about" component={<About />} /> */}
-        {/* <Route path="/courses" component={Navbar} /> */}
-        {/* Add more routes for other pages */}
-      </Routes>
-    </Router>
+        <Navbar user={user} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<Login />} />
+          <Route exact path="/signup" element={<SignUp />} />
+          <Route exact path="/password-reset" element={<PasswordReset />} />
+          {/* <ProtectedRoute exact path="/about" component={<About />} /> */}
+          {/* <Route path="/courses" component={Navbar} /> */}
+          {/* Add more routes for other pages */}
+        </Routes>
+      </Router>
+    </AuthProvider>
 
   );
 }

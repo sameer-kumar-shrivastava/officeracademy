@@ -1,5 +1,6 @@
 // SignUp.js
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import firebase from '../../firebase';
 
 const SignUp = () => {
@@ -18,7 +19,7 @@ const SignUp = () => {
       // Get the newly created user's unique ID (UID)
       const userId = userCredential.user.uid;
 
-      
+
 
       // Store additional user information in Firestore
       await firebase.firestore().collection('users').doc(userId).set({
@@ -26,12 +27,12 @@ const SignUp = () => {
         email: email,
         // Add more user details if needed
       })
-      .then(() => {
-        console.log("Document successfully written!");
-    })
-    .catch((error) => {
-        console.error("Error writing document: ", error);
-    });
+        .then(() => {
+          console.log("Document successfully written!");
+        })
+        .catch((error) => {
+          console.error("Error writing document: ", error);
+        });
       <script>
         alert("Congratulations, You are signed in");
       </script>
@@ -40,37 +41,41 @@ const SignUp = () => {
     } catch (error) {
       console.error('Error signing up:', error);
       <script>
-      alert("Error":error);
-    </script>
+        alert("Error":error);
+      </script>
     }
   };
+  
 
   return (
     <div>
-         <h2>Sign Up</h2>
-         <form onSubmit={handleSignup}>
-            <input
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-           <input
-             type="email"
-             placeholder="Email"
-             value={email}
-             onChange={(e) => setEmail(e.target.value)}
-           />
-           <input
-             type="password"
-             placeholder="Password"
-             value={password}
-             onChange={(e) => setPassword(e.target.value)}
-           />
-           <button type="submit">Sign Up</button>
-         </form>
-         {error && <p>{error}</p>}
-       </div>
+      <h2>Sign Up</h2>
+      <p>
+        Already a member? <Link to="/login">Sign in</Link>
+      </p>
+      <form onSubmit={handleSignup}>
+        <input
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Sign Up</button>
+      </form>
+      {error && <p>{error}</p>}
+    </div>
   );
 };
 

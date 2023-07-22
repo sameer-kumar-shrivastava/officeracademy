@@ -1,15 +1,32 @@
 // Navbar.js
-import React from 'react';
+import React,{useContext} from 'react';
 import './Navbar.styles.scss';
+import { AuthContext } from '../../AuthContext';
+import firebase from '../../firebase';
+import { useNavigate } from "react-router-dom";
 
 import { Link } from 'react-router-dom'; // If you are using React Router for navigation
 
 
 const Navbar = () => {
-  const isLoggedIn = false; // Replace this with your authentication state
+  // const isLoggedIn = false; // Replace this with your authentication state
+  const user = useContext(AuthContext);
+  const history = useNavigate();
+  const authContext = useContext(AuthContext);
 
   const handleLogout = () => {
-    // Implement your logout logic here
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        // Update the authentication status in the context to null (user is logged out)
+        authContext.setUser(null);
+        // Redirect to the login page (or any other desired page)
+        history.push('/login');
+      })
+      .catch((error) => {
+        console.error('Logout error:', error);
+      });
   };
 
   return (
@@ -35,7 +52,7 @@ const Navbar = () => {
           <li>
             <Link to="/mynotes">My Notes</Link>
           </li>
-          {isLoggedIn ? (
+          {user ? (
             <li>
               <button onClick={handleLogout}>Logout</button>
             </li>
