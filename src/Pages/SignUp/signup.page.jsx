@@ -19,20 +19,24 @@ const SignUp = () => {
       // Get the newly created user's unique ID (UID)
       const userId = userCredential.user.uid;
 
+      await userCredential.user.updateProfile({
+        displayName: name,
+      });
 
 
-      // Store additional user information in Firestore
-      await firebase.firestore().collection('users').doc(userId).set({
-        name: name,
-        email: email,
-        // Add more user details if needed
-      })
-        .then(() => {
-          console.log("Document successfully written!");
-        })
-        .catch((error) => {
-          console.error("Error writing document: ", error);
-        });
+
+      // // Store additional user information in Firestore
+      // await firebase.firestore().collection('users').doc(userId).set({
+      //   name: name,
+      //   email: email,
+      //   // Add more user details if needed
+      // })
+      //   .then(() => {
+      //     console.log("Document successfully written!");
+      //   })
+      //   .catch((error) => {
+      //     console.error("Error writing document: ", error);
+      //   });
       <script>
         alert("Congratulations, You are signed in");
       </script>
