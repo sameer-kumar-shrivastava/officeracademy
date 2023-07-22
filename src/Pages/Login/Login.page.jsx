@@ -52,7 +52,7 @@ const Login = () => {
     <div className="login-container">
       <h2>Login</h2>
       <p>
-        Don't have an account? <Link to="/signup">Sign up</Link>
+        Don't have an account? <Link className="signup-link" to="/signup">Sign up</Link>
       </p>
       <form onSubmit={handleLogin} className="login-form">
         <input

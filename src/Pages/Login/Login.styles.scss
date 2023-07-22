@@ -1,6 +1,15 @@
+.login-container-page{
+    // background-color: antiquewhite;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .login-container {
+    height: 50vh;
     width: 400px;
-    margin: auto;
+    margin: 0 auto;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -11,6 +20,10 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
+  .signup-link{
+    text-decoration: none;
+  }
+
   .login-title {
     font-size: 24px;
     font-weight: bold;
@@ -83,7 +96,8 @@
   }
   
   .google-button:hover {
-    background-color: #dadbdc;
+    // background-color: #dadbdc;
+    color: #0056b3;
   }
   
   .google-icon {
