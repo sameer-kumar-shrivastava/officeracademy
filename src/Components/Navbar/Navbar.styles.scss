@@ -1,0 +1,36 @@
+/* Navbar.css */
+.navbar {
+    // background-color: #f2f2f2;
+    padding: 10px 20px; /* Added padding on the top and bottom, and left and right */
+  }
+  
+  .container {
+    max-width: 1200px; /* Added max-width to center the content */
+    margin: 0 auto; /* Center the container horizontally */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .navbar-menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-menu li {
+    margin-left: 20px;
+  }
+  
+  .navbar-menu li:first-child {
+    margin-left: 0;
+  }
+  
