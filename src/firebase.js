@@ -1,18 +1,17 @@
 // firebase.js
-import firebase from 'firebase/app';
-import 'firebase/auth'; // Import the specific database module you need (realtime database in this case)
+import firebase from 'firebase/compat/app'; // Correct way to import Firebase in version 9 (v9) and above
+import 'firebase/compat/auth'; // Import the specific authentication module
 
-// firebase.js
 const firebaseConfig = {
-    apiKey: 'YOUR_API_KEY',
-    authDomain: 'YOUR_AUTH_DOMAIN',
-    databaseURL: 'YOUR_DATABASE_URL',
-    projectId: 'YOUR_PROJECT_ID',
-    storageBucket: 'YOUR_STORAGE_BUCKET',
-    messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-    appId: 'YOUR_APP_ID',
+    apiKey: "AIzaSyDexZ2esi-HVqmUMnZetcwLHV-9cm20z0Y",
+    authDomain: "officer-academy-ab110.firebaseapp.com",
+    projectId: "officer-academy-ab110",
+    storageBucket: "officer-academy-ab110.appspot.com",
+    messagingSenderId: "347525514676",
+    appId: "1:347525514676:web:7d9afa07a342f4082fdee1",
+    measurementId: "G-B9S3M2YLQ3"
   };
-  
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  export default firebase;
+
+firebase.initializeApp(firebaseConfig);
+
+export default firebase;
