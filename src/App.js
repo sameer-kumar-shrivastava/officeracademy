@@ -12,8 +12,8 @@ function App() {
       <Router>
       <Navbar />
       <Routes>
-        <Route path="/"  component={<Home/>} />
-        <Route path="/about" component={<About/>} />
+        <Route path="/"  element={<Home/>} />
+        <Route path="/about" element={<About/>} />
         {/* <Route path="/courses" component={Navbar} /> */}
         {/* Add more routes for other pages */}
       </Routes>
