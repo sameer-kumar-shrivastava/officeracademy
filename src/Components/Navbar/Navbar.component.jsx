@@ -16,7 +16,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="container">
         <Link to="/" className="navbar-logo">
-          Officer Academy
+          Logo
         </Link>
         <ul className="navbar-menu">
         
