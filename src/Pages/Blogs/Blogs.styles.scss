@@ -1,7 +1,19 @@
 /* Stylish CSS for BlogList component */
+
+.blog-page-container{
+  // margin-top: 10vh;
+  width: 100%;
+  height: auto;
+  padding-top: 10vh;
+  // background-color: antiquewhite;
+}
+
 .blog-list-container {
+  
+  // height: auto;
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0vh auto;
+    // margin-top: 10vh;
     padding: 20px;
   }
   

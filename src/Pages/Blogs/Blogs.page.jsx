@@ -24,7 +24,7 @@ const Blogs = () => {
         fetchBlogs();
     }, []);
 
-    return (<>
+    return (<div className="blog-page-container">
         {
             user ?
                 <div className="blog-list-container">
@@ -46,7 +46,7 @@ const Blogs = () => {
                     <h1>Please Login To Continue</h1>
                     <button><Link to='/login'>Login</Link></button>
                 </>
-        }</>);
+        }</div>);
 }
 
 export default Blogs;
