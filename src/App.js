@@ -17,6 +17,7 @@ import Blogs from './Pages/Blogs/Blogs.page';
 import BlogForm from './Pages/Blogs/AddBlogs.page';
 import NoticeBoardList from './Pages/Events/Events.pages';
 import AddNotice from './Pages/Events/AddEvents';
+import PdfUpload from './Pages/MyNotes/AddMyNotes';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -47,6 +48,7 @@ function App() {
           <Route exact path="/addblogs" element={<BlogForm />} />
           <Route exact path="/events" element={<NoticeBoardList/>} />
           <Route exact path="/addevents" element={<AddNotice/>} />
+          <Route exact path="/addmynotes" element={<PdfUpload />} />
           {/* <ProtectedRoute exact path="/about" component={<About />} /> */}
           {/* <Route path="/courses" component={Navbar} /> */}
           {/* Add more routes for other pages */}
