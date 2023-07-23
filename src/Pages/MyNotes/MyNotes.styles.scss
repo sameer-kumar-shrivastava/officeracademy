@@ -1,0 +1,49 @@
+/* Stylish CSS for PdfList component */
+.pdf-list-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .pdf-list-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .pdf-list {
+    display: grid;
+    gap: 10px;
+  }
+  
+  .pdf-item {
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .pdf-name {
+    flex: 1;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .download-button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .download-button:hover {
+    background-color: #0056b3;
+  }
+  

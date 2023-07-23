@@ -27,21 +27,18 @@ const Blogs = () => {
     return (<>
         {
             user ?
-                <>
-                    <div>
-                        <h2>List of Blogs</h2>
-                        {blogs.map((blog) => (
-                            <div key={blog.id}>
-                                <h3>{blog.title}</h3>
-                                <p>Published at: {blog.createdAt && blog.createdAt.toDate().toString()}</p>
-                                {/* <p>{blog.createdAt}</p> */}
-                                <p>{blog.content}</p>
-                                <p>Topic: {blog.topic}</p>
-                                {blog.imageUrl && <img src={blog.imageUrl} alt={blog.title} />}
-                            </div>
-                        ))}
-                    </div>
-                </>
+                <div className="blog-list-container">
+                    <h2>List of Blogs</h2>
+                    {blogs.map((blog) => (
+                        <div key={blog.id} className="blog-item">
+                            <h3 className="blog-title">{blog.title}</h3>
+                            <p className="blog-published-at">Published at: {blog.createdAt && blog.createdAt.toDate().toString()}</p>
+                            <p className="blog-content">{blog.content}</p>
+                            <p className="blog-topic">Topic: {blog.topic}</p>
+                            {blog.imageUrl && <img className="blog-image" src={blog.imageUrl} alt={blog.title} />}
+                        </div>
+                    ))}
+                </div>
 
                 :
 

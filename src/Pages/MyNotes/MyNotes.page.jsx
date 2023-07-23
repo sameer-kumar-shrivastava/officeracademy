@@ -14,7 +14,6 @@ import 'firebase/compat/storage';
 const MyNotes = () => {
     const user = useContext(AuthContext);
 
-
     const [pdfs, setPdfs] = useState([]);
 
     useEffect(() => {
@@ -38,6 +37,7 @@ const MyNotes = () => {
         };
 
         fetchPdfs();
+        
     }, []);
 
 
@@ -53,18 +53,18 @@ const MyNotes = () => {
     return (<>
         {
             user ?
-                <>
-                    <div>
-                        {pdfs.map((pdf) => (
-                            <div key={pdf.name}>
-                                <span>{pdf.name}</span>
-                                <button onClick={() => handleDownload(pdf)}>Download</button>
-                            </div>
-                        ))}
-                    </div>
-
-                </>
-
+            <div className="pdf-list-container">
+            <h2 className="pdf-list-heading">Download PDFs</h2>
+            <div className="pdf-list">
+              {pdfs.map((pdf) => (
+                <div key={pdf.name} className="pdf-item">
+                  <span className="pdf-name">{pdf.name}</span>
+                  <button className="download-button" onClick={() => handleDownload(pdf)}>Download</button>
+                  {/* <button className="download-button" onClick={() => handleDownload(pdf.url)}>Download</button> */}
+                </div>
+              ))}
+            </div>
+          </div>
                 :
 
                 <>
