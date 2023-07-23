@@ -30,40 +30,42 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar">
-      <div className="container">
+    // <div className="navbar">
+      <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-          Logo
+        <span className="nav-word1">Officer</span> <span className="nav-word2">Gateway</span>
         </Link>
-        <ul className="navbar-menu">
-        
+        {/* <ul className="navbar-menu">    */}
+        {user ? (
+          <ul className='navbar-menu'>     
           <li>
-            <Link to="/about">About Us</Link>
+            <Link className='navbar-menu-link' to="/about">About Us</Link>
           </li>
           <li>
-            <Link to="/privacy">Privacy Policy</Link>
+            <Link className='navbar-menu-link' to="/privacy">Privacy Policy</Link>
           </li>
           <li>
-            <Link to="/events">Events</Link>
+            <Link className='navbar-menu-link' to="/events">Events</Link>
           </li>
           <li>
-            <Link to="/blogs">Blogs</Link>
+            <Link className='navbar-menu-link' to="/blogs">Blogs</Link>
           </li>
           <li>
-            <Link to="/mynotes">My Notes</Link>
+            <button className='my-notes-button'><Link className='navbar-menu-link' to="/mynotes">My Notes</Link></button>
           </li>
-          {user ? (
             <li>
-              <button onClick={handleLogout}>Logout</button>
+              <button className='logout-button' onClick={handleLogout}>Logout</button>
             </li>
+            </ul>
           ) : (
+            <ul className='navbar-menu'>
             <li>
               <Link to="/login">Login</Link>
             </li>
+            </ul>
           )}
-        </ul>
+        {/* </ul> */}
       </div>
-    </nav>
   );
 };
 
