@@ -15,6 +15,8 @@ import PasswordReset from './Pages/ForgotPassword/forgotpassword.page';
 import MyNotes from './Pages/MyNotes/MyNotes.page';
 import Blogs from './Pages/Blogs/Blogs.page';
 import BlogForm from './Pages/Blogs/AddBlogs.page';
+import NoticeBoardList from './Pages/Events/Events.pages';
+import AddNotice from './Pages/Events/AddEvents';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -43,6 +45,8 @@ function App() {
           <Route exact path="/mynotes" element={<MyNotes />} />
           <Route exact path="/blogs" element={<Blogs />} />
           <Route exact path="/addblogs" element={<BlogForm />} />
+          <Route exact path="/events" element={<NoticeBoardList/>} />
+          <Route exact path="/addevents" element={<AddNotice/>} />
           {/* <ProtectedRoute exact path="/about" component={<About />} /> */}
           {/* <Route path="/courses" component={Navbar} /> */}
           {/* Add more routes for other pages */}
