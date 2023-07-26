@@ -34,7 +34,8 @@ function App() {
 
 
   return (
-    <AuthProvider>
+    <div className='App'>    
+      <AuthProvider>
       <Router>
         <Navbar user={user} />
         <Routes>
@@ -55,6 +56,8 @@ function App() {
         </Routes>
       </Router>
     </AuthProvider>
+    </div>
+
 
   );
 }

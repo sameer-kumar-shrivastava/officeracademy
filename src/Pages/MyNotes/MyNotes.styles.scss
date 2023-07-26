@@ -1,8 +1,18 @@
 /* Stylish CSS for PdfList component */
+
+body{
+  background-color: #000222;
+}
+
 .pdf-list-container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
+    padding-top: 10vh;
+  }
+
+  .pdf-list-container h2{
+    color: white;
   }
   
   .pdf-list-heading {

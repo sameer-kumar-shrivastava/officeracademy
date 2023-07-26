@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../../AuthContext";
+import React from "react";
+// import { AuthContext } from "../../AuthContext";
 import "./Home.styles.scss";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
@@ -10,11 +10,11 @@ import Twitter from './twitter.png'
 import Youtube from './youtube.png'
 
 const Home = () => {
-    const user = useContext(AuthContext);
+    // const user = useContext(AuthContext);
 
     return (
         <>
-            {user ? (
+            (
                 <div className="home-container">
                     <div className="top-section">
                         {/* Background image and other content */}
@@ -38,7 +38,7 @@ const Home = () => {
                             <Carousel.Item>
                                 <img
                                     src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXBwbGVzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
-                                    alt="Image 1"
+                                    alt="Sliderbackground"
                                 />
                                 {/* <Carousel.Caption>
                   This is the caption for image 1.
@@ -52,14 +52,14 @@ const Home = () => {
                             <Carousel.Item>
                                 <img
                                     src="https://plus.unsplash.com/premium_photo-1674582717488-500200d86129?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
-                                    alt="Image 2"
+                                    alt="Sliderbackground2"
                                 />
                                 <div className="carousel-overlay"></div>
                             </Carousel.Item>
                             <Carousel.Item>
                                 <img
                                     src="https://plus.unsplash.com/premium_photo-1674582717488-500200d86129?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw3fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
-                                    alt="Image 3"
+                                    alt="Sliderbackground3"
                                 />
                                 <div className="carousel-overlay"></div>
                             </Carousel.Item>
@@ -117,9 +117,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-            ) : (
-                <h1></h1>
-            )}
+            ) 
         </>
     );
 };

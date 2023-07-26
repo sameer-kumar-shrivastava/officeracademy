@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'; // If you are using React Router for na
 
 const Navbar = () => {
   const user = useContext(AuthContext);
-  const history = useNavigate();
+  const navigate = useNavigate();
   const authContext = useContext(AuthContext);
 
   const [scrolled, setScrolled] = useState(false);
@@ -19,9 +19,11 @@ const Navbar = () => {
       .signOut()
       .then(() => {
         // Update the authentication status in the context to null (user is logged out)
-        authContext.setUser(null);
         // Redirect to the login page (or any other desired page)
-        history('/login');
+        navigate('/login');
+        authContext.setUser(null);
+        
+       
       })
       .catch((error) => {
         console.error('Logout error:', error);

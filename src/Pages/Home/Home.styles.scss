@@ -1,7 +1,7 @@
 /* Home.styles.scss */
 
 .home-container {
-    /* Set container styles, if needed */
+    margin-top:-25px;
 }
 
 .top-section {
@@ -138,6 +138,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: #fff;
   }
 
   .footer-divider{
