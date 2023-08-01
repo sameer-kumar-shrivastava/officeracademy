@@ -13,6 +13,7 @@ import Youtube from './youtube.png'
 const Home = () => {
     // const user = useContext(AuthContext);
     const [blogs, setBlogs] = useState([]);
+    const [notices, setNotices] = useState([]);
 
     useEffect(() => {
         const fetchBlogs = async () => {
@@ -34,6 +35,26 @@ const Home = () => {
         fetchBlogs();
     }, []);
 
+    useEffect(() => {
+        const fetchNotices = async () => {
+            try {
+                const noticeDocs = await firebase
+                    .firestore()
+                    .collection('noticeboard')
+                    .orderBy('date', 'desc') // Sort by date in descending order (latest first)
+                    .limit(3) // Limit the results to 3
+                    .get();
+
+                const noticeList = noticeDocs.docs.map((doc) => doc.data());
+                setNotices(noticeList);
+            } catch (error) {
+                console.error('Error fetching events:', error);
+            }
+        };
+
+        fetchNotices();
+    }, []);
+
 
     return (
         <>
@@ -48,8 +69,15 @@ const Home = () => {
                 </div>
                 <div className="middle-section">
                     <div className="left-half">
-                        {/* Content for the left half of the middle section */}
-                        <p>Content for the left half goes here</p>
+                    <div className="blog-list-container">
+                            <h2 className="blog-list-heading">Top 3 Events</h2>
+                            {notices.map((notice) => (
+                                <div key={notice.id} className="blog-item">
+                                    <h3 className="blog-title">{notice.title}</h3>
+                                    {/* Other blog details */}
+                                </div>
+                            ))}
+                        </div>
                     </div>
                     <div className="right-half">
                         <div className="blog-list-container">
@@ -57,7 +85,6 @@ const Home = () => {
                             {blogs.map((blog) => (
                                 <div key={blog.id} className="blog-item">
                                     <h3 className="blog-title">{blog.title}</h3>
-                                    {/* Other blog details */}
                                 </div>
                             ))}
                         </div>
