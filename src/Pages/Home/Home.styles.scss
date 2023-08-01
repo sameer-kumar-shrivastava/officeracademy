@@ -57,7 +57,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightblue;
+    background-color: white;
     /* Add any background color for the left half */
 }
 
@@ -67,7 +67,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    // background-color: lightgreen;
+    background-color: rgb(219, 180, 107);
     /* Add any background color for the right half */
 }
 
@@ -227,6 +227,9 @@
   }
 
 
+.blog-list-container-home h2{
+  color: #151515;
+}
 
 
 

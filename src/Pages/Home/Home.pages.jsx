@@ -69,8 +69,8 @@ const Home = () => {
                 </div>
                 <div className="middle-section">
                     <div className="left-half">
-                    <div className="blog-list-container">
-                            <h2 className="blog-list-heading">Top 3 Events</h2>
+                    <div className="blog-list-container-home">
+                            <h2 className="blog-list-heading-home">Top 3 Events</h2>
                             {notices.map((notice) => (
                                 <div key={notice.id} className="blog-item">
                                     <h3 className="blog-title">{notice.title}</h3>
@@ -80,8 +80,8 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="right-half">
-                        <div className="blog-list-container">
-                            <h2 className="blog-list-heading">Top 3 Blogs</h2>
+                        <div className="blog-list-container-home">
+                            <h2 className="blog-list-heading-home">Top 3 Blogs</h2>
                             {blogs.map((blog) => (
                                 <div key={blog.id} className="blog-item">
                                     <h3 className="blog-title">{blog.title}</h3>
