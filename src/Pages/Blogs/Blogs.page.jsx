@@ -31,7 +31,9 @@ const Blogs = () => {
                     <h2>List of Blogs</h2>
                     {blogs.map((blog) => (
                         <div key={blog.id} className="blog-item">
+                            <Link to={`/blog/${blog.id}`}>
                             <h3 className="blog-title">{blog.title}</h3>
+                            </Link>
                             <p className="blog-published-at">Published at: {blog.createdAt && blog.createdAt.toDate().toString()}</p>
                             <p className="blog-content">{blog.content}</p>
                             <p className="blog-topic">Topic: {blog.topic}</p>

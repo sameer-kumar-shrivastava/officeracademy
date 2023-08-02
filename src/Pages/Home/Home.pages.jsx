@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import { AuthContext } from "../../AuthContext";
+import { Link } from "react-router-dom";
 import firebase from '../../firebase';
 import "./Home.styles.scss";
 import { Carousel } from "react-bootstrap";
@@ -14,17 +15,33 @@ const Home = () => {
     // const user = useContext(AuthContext);
     const [blogs, setBlogs] = useState([]);
 
+    // useEffect(() => {
+    //     const fetchBlogs = async () => {
+    //         try {
+    //             const blogDocs = await firebase
+    //                 .firestore()
+    //                 .collection('blogs')
+    //                 .orderBy('createdAt', 'desc') // Sort by date in descending order (latest first)
+    //                 .limit(3) // Limit the results to 3
+    //                 .get();
+
+    //             const blogList = blogDocs.docs.map((doc) => doc.data());
+    //             setBlogs(blogList);
+    //         } catch (error) {
+    //             console.error('Error fetching blogs:', error);
+    //         }
+    //     };
+
+    //     fetchBlogs();
+    // }, []);
+
+
     useEffect(() => {
+        // Fetch blogs from Firestore
         const fetchBlogs = async () => {
             try {
-                const blogDocs = await firebase
-                    .firestore()
-                    .collection('blogs')
-                    .orderBy('createdAt', 'desc') // Sort by date in descending order (latest first)
-                    .limit(3) // Limit the results to 3
-                    .get();
-
-                const blogList = blogDocs.docs.map((doc) => doc.data());
+                const snapshot = await firebase.firestore().collection('blogs').orderBy('createdAt', 'desc').limit(3).get();
+                const blogList = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
                 setBlogs(blogList);
             } catch (error) {
                 console.error('Error fetching blogs:', error);
@@ -56,10 +73,13 @@ const Home = () => {
                             <h2 className="blog-list-heading">Top 3 Blogs</h2>
                             {blogs.map((blog) => (
                                 <div key={blog.id} className="blog-item">
-                                    <h3 className="blog-title">{blog.title}</h3>
+                                    <Link to={`/blog/${blog.id}`}>
+                                        <h3 key={blog.id} className="blog-title">{blog.title}</h3>
+                                    </Link>
                                     {/* Other blog details */}
                                 </div>
                             ))}
+
                         </div>
                     </div>
                 </div>

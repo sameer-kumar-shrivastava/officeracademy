@@ -58,13 +58,18 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link className="navbar-menu-link" to="/privacy">
-              Privacy Policy
+            <Link className="navbar-menu-link" to="/courses">
+              Courses
             </Link>
           </li>
           <li>
             <Link className="navbar-menu-link" to="/events">
               Events
+            </Link>
+          </li>
+          <li>
+            <Link className="navbar-menu-link" to="/blogs">
+              Youtube Videos 
             </Link>
           </li>
           <li>

@@ -8,10 +8,13 @@ const BlogForm = () => {
     const [content, setContent] = useState('');
     const [topic, setTopic] = useState('');
     const [image, setImage] = useState(null);
+    
+    const user = firebase.auth().currentUser;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if(user){
         try {
             // Upload image to Firebase Storage if an image is selected
             let imageUrl = null;
@@ -29,6 +32,11 @@ const BlogForm = () => {
                 topic,
                 imageUrl,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                author: {
+                    userId: user.uid,
+                    name: user.displayName,
+                    image: user.photoURL,
+                  }
             });
 
             // Clear form fields after successful submission
@@ -38,6 +46,10 @@ const BlogForm = () => {
             setImage(null);
         } catch (error) {
             console.error('Error adding blog:', error);
+        }}
+        else{
+             // Handle the case when the user is not logged in
+            console.log('User not logged in.');
         }
     };
 
