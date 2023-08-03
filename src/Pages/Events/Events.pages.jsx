@@ -12,7 +12,10 @@ const NoticeBoardList = () => {
     // Fetch notices from Firestore
     const fetchNotices = async () => {
       const snapshot = await firebase.firestore().collection('noticeboard').get();
-      const noticeList = snapshot.docs.map((doc) => doc.data());
+      const noticeList = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(), 
+      }));
       setNotices(noticeList);
     };
 
@@ -55,15 +58,17 @@ const NoticeBoardList = () => {
           <h3 className="notice-title">{notice.title}</h3>
           <p className="notice-content">{notice.content}</p>
           <p className="notice-date">Date: {notice.date && notice.date.toDate().toLocaleDateString()}</p>
+          {/* <p>{notice.id}</p> */}
         </div>
       ))}
 
       <div>
         <h2 className="notice-board-heading">Upcoming Events</h2>
         {upcomingEvents.map((event, index) => (
-          <div key={index} className="notice-item">
+          <div key={event.id} className="notice-item">
             <h3 className="notice-title">{event.title}</h3>
             <p  className="notice-date">Date: {event.date && event.date.toDate().toLocaleDateString()}</p>
+            {/* <p>{event.id}</p> */}
             {/* Display other event details */}
           </div>
         ))}
