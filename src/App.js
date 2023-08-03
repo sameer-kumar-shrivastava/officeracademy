@@ -19,6 +19,8 @@ import NoticeBoardList from './Pages/Events/Events.pages';
 import AddNotice from './Pages/Events/AddEvents';
 import PdfUpload from './Pages/MyNotes/AddMyNotes';
 import SingleBlog from './Pages/Blogs/SingleBlog.page';
+import PastEvents from './Pages/Events/PastEvents.pages';
+import FacultyPage from './Pages/AboutUs/Faculty.pages';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -49,9 +51,12 @@ function App() {
           <Route exact path="/blogs" element={<Blogs />} />
           <Route exact path="/addblogs" element={<BlogForm />} />
           <Route exact path="/events" element={<NoticeBoardList/>} />
+          <Route exact path='/past-events' element={<PastEvents/>} />
           <Route exact path="/addevents" element={<AddNotice/>} />
           <Route exact path="/addmynotes" element={<PdfUpload />} />
           <Route path="/blog/:id" element={<SingleBlog/>} />
+          <Route path="/faculty" element={<FacultyPage/>} />
+
           {/* <ProtectedRoute exact path="/about" component={<About />} /> */}
           {/* <Route path="/courses" component={Navbar} /> */}
           {/* Add more routes for other pages */}

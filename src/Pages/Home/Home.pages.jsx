@@ -62,12 +62,13 @@ const Home = () => {
                     .limit(3) // Limit the results to 3
                     .get();
 
-                const noticeList = noticeDocs.docs.map((doc) => doc.data());
+                const noticeList = noticeDocs.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
                 setNotices(noticeList);
             } catch (error) {
                 console.error('Error fetching events:', error);
             }
         };
+        console.log({blogs});
 
         fetchNotices();
     }, []);
@@ -91,6 +92,7 @@ const Home = () => {
                             {notices.map((notice) => (
                                 <div key={notice.id} className="blog-item">
                                     <h3 className="blog-title">{notice.title}</h3>
+                                    
                                     {/* Other blog details */}
                                 </div>
                             ))}
@@ -103,6 +105,8 @@ const Home = () => {
                                 <div key={blog.id} className="blog-item">
                                     <Link to={`/blog/${blog.id}`}>
                                         <h3 key={blog.id} className="blog-title">{blog.title}</h3>
+                                        <p>By:{blog.author.name}</p>
+                                        {/* <p>{new Date(blog.createdAt.seconds*1000)}</p> */}
                                     </Link>
                                     {/* Other blog details */}
                                 </div>
