@@ -58,7 +58,7 @@ const NoticeBoardList = () => {
           <h3 className="notice-title">{notice.title}</h3>
           <p className="notice-content">{notice.content}</p>
           <p className="notice-date">Date: {notice.date && notice.date.toDate().toLocaleDateString()}</p>
-          <p>{notice.id}</p>
+          {/* <p>{notice.id}</p> */}
         </div>
       ))}
 
@@ -68,7 +68,7 @@ const NoticeBoardList = () => {
           <div key={event.id} className="notice-item">
             <h3 className="notice-title">{event.title}</h3>
             <p  className="notice-date">Date: {event.date && event.date.toDate().toLocaleDateString()}</p>
-            <p>{event.id}</p>
+            {/* <p>{event.id}</p> */}
             {/* Display other event details */}
           </div>
         ))}
