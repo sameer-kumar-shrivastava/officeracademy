@@ -48,8 +48,7 @@ const BlogForm = () => {
             console.error('Error adding blog:', error);
         }}
         else{
-             // Handle the case when the user is not logged in
-            console.log('User not logged in.');
+             console.log('User not logged in.');
         }
     };
 

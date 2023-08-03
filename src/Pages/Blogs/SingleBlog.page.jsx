@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import firebase from '../../firebase';
+import { Link } from 'react-router-dom';
 
 import './SingleBlog.styles.scss';
 
 const SingleBlog = () => {
     const { id } = useParams();
     const [blog, setBlog] = useState(null);
+    const [relatedBlogs, setRelatedBlogs] = useState([]);
+    const [youMissedBlogs, setYouMissedBlogs] = useState([]);
     const [readTime, setReadTime] = useState(0);
     const [comments, setComments] = useState([]);
     const [commentContent, setCommentContent] = useState('');
     const [user, setUser] = useState(null);
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
+
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -59,6 +63,70 @@ const SingleBlog = () => {
 
         fetchComments();
     }, [id]);
+
+
+    useEffect(() => {
+        // Fetch the top 3 related blogs with the same topic as the given blog
+        if (blog && blog.topic) {
+            const fetchRelatedBlogs = async () => {
+                const relatedBlogsSnapshot = await firebase.firestore()
+                    .collection('blogs')
+                    .where('topic', '==', blog.topic)
+                    .limit(3)
+                    .get();
+
+                // const relatedBlogsData = relatedBlogsSnapshot.docs.map((doc) => doc.data());
+                const relatedBlogsData = relatedBlogsSnapshot.docs.map((doc) => ({
+                    id: doc.id, // Include the ID in the blog object
+                    ...doc.data(), // Include other blog data
+                  }));
+
+                // Filter out the current blog from the list of related blogs
+                const filteredRelatedBlogs = relatedBlogsData.filter((relatedBlog) => relatedBlog.id !== id);
+
+
+                // Set the first 3 filtered blogs as relatedBlogs
+                setRelatedBlogs(filteredRelatedBlogs.slice(0, 3));
+            };
+
+            fetchRelatedBlogs();
+        }
+    }, [blog, id]);
+
+
+
+
+
+    useEffect(() => {
+        // Fetch the top 3 blogs based on view count (excluding the current blog) from Firestore
+        const fetchYouMissedBlogs = async () => {
+            try {
+                const currentBlogDoc = await firebase.firestore().collection('blogs').doc(id).get();
+                const currentBlogViews = currentBlogDoc.data().views;
+
+                const youMissedBlogsSnapshot = await firebase
+                    .firestore()
+                    .collection('blogs')
+                    .where('views', '>', currentBlogViews) // Using inequality filter
+                    .orderBy('views') // Using __name__ as the first argument for orderBy()
+                    .limit(3)
+                    .get();
+
+                    const youMissedBlogsData = youMissedBlogsSnapshot.docs.map((doc) => ({
+                        id: doc.id, // Include the ID in the blog object
+                        ...doc.data(), // Include other blog data
+                      }));
+
+                setYouMissedBlogs(youMissedBlogsData);
+            } catch (error) {
+                console.error('Error fetching "You Missed" blogs:', error);
+            }
+        };
+
+        fetchYouMissedBlogs();
+    }, [id]);
+
+
 
 
     useEffect(() => {
@@ -150,6 +218,40 @@ const SingleBlog = () => {
                             <p>{comment.content}</p>
                         </div>
                     ))}
+
+
+                    {/* Display related blogs */}
+                    {relatedBlogs.length > 0 && (
+                        <div className="related-blogs-container">
+                            <h3>Related Blogs</h3>
+                            {relatedBlogs.map((relatedBlog, index) => (
+
+                                <div key={index}>
+                                    <Link to={`/blog/${relatedBlog.id}`}>
+
+                                        <h4>{relatedBlog.title}</h4>
+                                        
+                                    </Link>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+
+
+                    {/* Display "You Missed" blogs */}
+                    {youMissedBlogs.length > 0 && (
+                        <div className="you-missed-blogs-container">
+                            <h3>You Missed</h3>
+                            {youMissedBlogs.map((blog) => (
+                                <div key={blog.id}>
+                                    <Link to={`/blog/${blog.id}`}>
+                                        <h4>{blog.title}</h4>
+                                    </Link>
+                                </div>
+                            ))}
+                        </div>
+                    )}
 
                 </div>
 

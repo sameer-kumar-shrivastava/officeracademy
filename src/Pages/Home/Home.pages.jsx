@@ -14,6 +14,7 @@ import Youtube from './youtube.png'
 const Home = () => {
     // const user = useContext(AuthContext);
     const [blogs, setBlogs] = useState([]);
+    const [notices, setNotices] = useState([]);
 
     // useEffect(() => {
     //     const fetchBlogs = async () => {

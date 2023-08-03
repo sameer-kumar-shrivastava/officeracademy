@@ -4,7 +4,10 @@ import './Event.styles.scss';
 
 const NoticeBoardList = () => {
   const [notices, setNotices] = useState([]);
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
 
+
+  
   useEffect(() => {
     // Fetch notices from Firestore
     const fetchNotices = async () => {
@@ -16,17 +19,56 @@ const NoticeBoardList = () => {
     fetchNotices();
   }, []);
 
+  useEffect(() => {
+    // Fetch upcoming events based on the current date
+     const fetchUpcomingEvents = async () => {
+      try {
+        const currentDate = new Date();
+  
+        const upcomingEventsSnapshot = await firebase
+          .firestore()
+          .collection('noticeboard')
+          .where('date', '>=', currentDate) // Fetch events with dates greater than or equal to the current date
+          .orderBy('date')
+          .get();
+  
+        const upcomingEventsData = upcomingEventsSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+  
+        setUpcomingEvents(upcomingEventsData);
+      } catch (error) {
+        console.error('Error fetching upcoming events:', error);
+      }
+    };
+
+    fetchUpcomingEvents();
+  
+  },[]);
+
   return (
     <div className="notice-board-container">
-    <h2 className="notice-board-heading">Notice Board</h2>
-    {notices.map((notice) => (
-      <div key={notice.id} className="notice-item">
-        <h3 className="notice-title">{notice.title}</h3>
-        <p className="notice-content">{notice.content}</p>
-        <p className="notice-date">Date: {notice.date && notice.date.toDate().toLocaleDateString()}</p>
+      <h2 className="notice-board-heading">Notice Board</h2>
+      {notices.map((notice) => (
+        <div key={notice.id} className="notice-item">
+          <h3 className="notice-title">{notice.title}</h3>
+          <p className="notice-content">{notice.content}</p>
+          <p className="notice-date">Date: {notice.date && notice.date.toDate().toLocaleDateString()}</p>
+        </div>
+      ))}
+
+      <div>
+        <h2 className="notice-board-heading">Upcoming Events</h2>
+        {upcomingEvents.map((event, index) => (
+          <div key={index} className="notice-item">
+            <h3 className="notice-title">{event.title}</h3>
+            <p  className="notice-date">Date: {event.date && event.date.toDate().toLocaleDateString()}</p>
+            {/* Display other event details */}
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
+    </div>
   );
 };
 
