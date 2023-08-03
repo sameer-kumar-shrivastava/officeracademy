@@ -1,3 +1,31 @@
-.SingleBlog{
+.SingleBlog-container{
+    padding: 10vh 0 5vh 0;
     color:white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.singleblog-div-main{
+    // background-color: aqua;
+    width: 75%;
+    text-align: justify;
+}
+
+.singleblog-comments-section{
+    // background-color: aquamarine;
+    margin: 10vh 0 5vh 0;
+}
+
+.commentor-name{
+    margin: 0;
+}
+
+.comment-form-container{
+    // background-color: aqua;
+    margin: 0 0 10vh 0;
+}
+
+.comment-form-container form button{
+    margin: 20px 0 0 0;
 }
