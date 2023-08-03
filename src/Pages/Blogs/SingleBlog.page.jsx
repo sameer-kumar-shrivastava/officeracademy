@@ -79,7 +79,7 @@ const SingleBlog = () => {
                 const relatedBlogsData = relatedBlogsSnapshot.docs.map((doc) => ({
                     id: doc.id, // Include the ID in the blog object
                     ...doc.data(), // Include other blog data
-                  }));
+                }));
 
                 // Filter out the current blog from the list of related blogs
                 const filteredRelatedBlogs = relatedBlogsData.filter((relatedBlog) => relatedBlog.id !== id);
@@ -112,10 +112,10 @@ const SingleBlog = () => {
                     .limit(3)
                     .get();
 
-                    const youMissedBlogsData = youMissedBlogsSnapshot.docs.map((doc) => ({
-                        id: doc.id, // Include the ID in the blog object
-                        ...doc.data(), // Include other blog data
-                      }));
+                const youMissedBlogsData = youMissedBlogsSnapshot.docs.map((doc) => ({
+                    id: doc.id, // Include the ID in the blog object
+                    ...doc.data(), // Include other blog data
+                }));
 
                 setYouMissedBlogs(youMissedBlogsData);
             } catch (error) {
@@ -168,9 +168,9 @@ const SingleBlog = () => {
 
 
     return (
-        <div className='SingleBlog'>
+        <div className='SingleBlog-container'>
             {blog ? (
-                <div>
+                <div className='singleblog-div-main'>
                     <h2>{blog.title}</h2>
                     <p>Views: {blog.views * 1}</p>
                     <p>Read Time: {readTime} minute(s)</p>
@@ -189,9 +189,21 @@ const SingleBlog = () => {
 
 
 
-                    {/* Comment form */}
 
-                    <>
+                    {/* Display comments */}
+                    <div className='singleblog-comments-section'>
+                    <h3>Comments</h3>
+                    {comments.map((comment) => (
+                        <div className='comments' key={comment.id}>
+                            <p className='commentor-name'>{comment.name}</p>
+                            <p className='comment-content' style={{color:"orange"}}>{comment.content}</p>
+                        </div>
+                    ))}
+                    </div>
+
+                         {/* Comment form */}
+
+                    <div className='comment-form-container'>
                         <form onSubmit={handleCommentSubmit}>
                             <div>
                                 <label>Name:</label>
@@ -207,17 +219,7 @@ const SingleBlog = () => {
                             </div>
                             <button type="submit">Submit Comment</button>
                         </form>
-                    </>
-
-
-                    {/* Display comments */}
-                    <h3>Comments</h3>
-                    {comments.map((comment) => (
-                        <div key={comment.id}>
-                            <p>{comment.name}</p>
-                            <p>{comment.content}</p>
-                        </div>
-                    ))}
+                    </div>
 
 
                     {/* Display related blogs */}
@@ -230,7 +232,7 @@ const SingleBlog = () => {
                                     <Link to={`/blog/${relatedBlog.id}`}>
 
                                         <h4>{relatedBlog.title}</h4>
-                                        
+
                                     </Link>
                                 </div>
                             ))}

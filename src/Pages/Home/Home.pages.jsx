@@ -61,7 +61,7 @@ const Home = () => {
                     .orderBy('date', 'desc') // Sort by date in descending order (latest first)
                     .limit(3) // Limit the results to 3
                     .get();
-
+                const snapshot = await firebase.firestore().collection('noticeboard').orderBy('createdAt', 'desc').limit(3).get();
                 const noticeList = noticeDocs.docs.map((doc) => doc.data());
                 setNotices(noticeList);
             } catch (error) {
