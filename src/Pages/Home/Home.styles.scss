@@ -48,11 +48,14 @@
     /* Set styles for the middle section */
     display: flex;
     height: 350px;
+    // background-color: #151515;
+    // width: 100vw;
     /* Set the height of the middle section as per your design */
 }
 
 .left-half {
     /* Set styles for the left half of the middle section */
+    // height: 400px;
     flex: 1;
     display: flex;
     justify-content: center;
@@ -232,19 +235,54 @@
   color: #151515;
 }
 
-// .blog-list-container-home {
-//   overflow-y: scroll;
-// }
+.blog-list-container-home1 {
+  // height: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  // margin-bottom: 2vh;
+  // background-color: #023870;
+  // overflow-y: scroll;
+}
+
+.event-item-home{
+  // background-color: #d54c4c;
+height: auto;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+min-width: 20vw;
+margin: 2vh 0.5vw 2vh 0.5vw;
+background-color: #f9f9f9;
+// background-color: red;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+// padding: 2vh 0 0 0;
+}
+
+.blog-item-home{
+  background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 16px;
+    max-width: 90%;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
 .right-half1{
   overflow-y: scroll;
   background-color: #fff;
   // background-color: mediumaquamarine;
-  max-width: 50vw;
+  width: 50%;
 }
 
-.left-half{
-  overflow-y: scroll;
+.left-half1{
+  display: flex;
+  width: 50%;
+  overflow-x: scroll;
+  border-right: 1px solid #b3b3b3;
 }
 
 
