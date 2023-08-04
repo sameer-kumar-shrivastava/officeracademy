@@ -8,47 +8,60 @@ const BlogForm = () => {
     const [content, setContent] = useState('');
     const [topic, setTopic] = useState('');
     const [image, setImage] = useState(null);
-    
+
     const user = firebase.auth().currentUser;
+
+
+    // Utility function to trim the content to 15-20 words
+
+    const getShortContent = (content) => {
+        const words = content.split(' ');
+        const trimmedContent = words.slice(0, 20).join(' ');
+        return trimmedContent;
+      };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if(user){
-        try {
-            // Upload image to Firebase Storage if an image is selected
-            let imageUrl = null;
-            if (image) {
-                const storageRef = firebase.storage().ref();
-                const imageRef = storageRef.child(`blog-images/${image.name}`);
-                await imageRef.put(image);
-                imageUrl = await imageRef.getDownloadURL();
+        if (user) {
+            try {
+                // Upload image to Firebase Storage if an image is selected
+                let imageUrl = null;
+                if (image) {
+                    const storageRef = firebase.storage().ref();
+                    const imageRef = storageRef.child(`blog-images/${image.name}`);
+                    await imageRef.put(image);
+                    imageUrl = await imageRef.getDownloadURL();
+                }
+
+                // Add the blog data to Firestore
+                await firebase.firestore().collection('blogs').add({
+                    title,
+                    content,
+                    topic,
+                    imageUrl,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    author: {
+                        userId: user.uid,
+                        name: user.displayName,
+                        image: user.photoURL,
+                    },
+
+                 // Add shortContent field here (use a function to trim the content)
+                    shortContent: getShortContent(content),
+                });
+
+                // Clear form fields after successful submission
+                setTitle('');
+                setContent('');
+                setTopic('');
+                setImage(null);
+            } catch (error) {
+                console.error('Error adding blog:', error);
             }
-
-            // Add the blog data to Firestore
-            await firebase.firestore().collection('blogs').add({
-                title,
-                content,
-                topic,
-                imageUrl,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                author: {
-                    userId: user.uid,
-                    name: user.displayName,
-                    image: user.photoURL,
-                  }
-            });
-
-            // Clear form fields after successful submission
-            setTitle('');
-            setContent('');
-            setTopic('');
-            setImage(null);
-        } catch (error) {
-            console.error('Error adding blog:', error);
-        }}
-        else{
-             console.log('User not logged in.');
+        }
+        else {
+            console.log('User not logged in.');
         }
     };
 

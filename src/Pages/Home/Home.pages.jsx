@@ -68,10 +68,17 @@ const Home = () => {
                 console.error('Error fetching events:', error);
             }
         };
-        console.log({blogs});
+        console.log({ blogs });
 
         fetchNotices();
     }, []);
+
+    const getShortContent = (content) => {
+        const words = content.split(' ');
+        const trimmedContent = words.slice(0, 50).join(' ');
+        return trimmedContent;
+      };
+
 
 
     return (
@@ -87,31 +94,35 @@ const Home = () => {
                 </div>
                 <div className="middle-section">
                     <div className="left-half">
-                    <div className="blog-list-container-home">
+                        <div className="blog-list-container-home">
                             <h2 className="blog-list-heading-home">Top 3 Events</h2>
                             {notices.map((notice) => (
                                 <div key={notice.id} className="blog-item">
                                     <h3 className="blog-title">{notice.title}</h3>
-                                    
+
                                     {/* Other blog details */}
                                 </div>
                             ))}
                         </div>
                     </div>
-                    <div className="right-half">
-                        <div className="blog-list-container-home">
-                            <h2 className="blog-list-heading-home">Top 3 Blogs</h2>
+                    <div className="right-half1">
+                        <div className="blog-list-container-home1">
+                            <h2 className="blog-list-heading-home1">Top 3 Blogs</h2>
                             {blogs.map((blog) => (
                                 <div key={blog.id} className="blog-item">
                                     <Link to={`/blog/${blog.id}`}>
-                                        <h3 key={blog.id} className="blog-title">{blog.title}</h3>
-                                        <p>By:{blog.author.name}</p>
-                                        {/* <p>{new Date(blog.createdAt.seconds*1000)}</p> */}
-                                    </Link>
+                                        <h3 key={blog.id} className="blog-title">{blog.title}</h3>       </Link>
+                                   
+                                    <p>Posted on: {new Date(blog.createdAt.seconds * 1000).toLocaleDateString()}</p>
+                                    <p>By:{blog.author.name}</p>
+                                    <p>{getShortContent(blog.content)}...<Link to={`/blog/${blog.id}`}>Read More</Link></p>
+                                    {/* Add a link to the full blog page */}
+                                    
+                                    {/* <p>{new Date(blog.createdAt.seconds*1000)}</p> */}
+
                                     {/* Other blog details */}
                                 </div>
                             ))}
-
                         </div>
                     </div>
                 </div>

@@ -67,7 +67,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(219, 180, 107);
+    background-color: #fff;
+    // background-color: rgb(219, 180, 107);
     /* Add any background color for the right half */
 }
 
@@ -229,6 +230,20 @@
 
 .blog-list-container-home h2{
   color: #151515;
+}
+
+// .blog-list-container-home {
+//   overflow-y: scroll;
+// }
+
+.right-half1{
+  overflow-y: scroll;
+  background-color: #fff;
+  max-width: 50vw;
+}
+
+.left-half{
+  overflow-y: scroll;
 }
 
 
