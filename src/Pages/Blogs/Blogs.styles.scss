@@ -4,8 +4,21 @@
   // margin-top: 10vh;
   width: 100%;
   height: auto;
-  padding-top: 10vh;
+  // padding-top: 10vh;
   // background-color: antiquewhite;
+}
+
+.blogs-top-section{
+  background-image: url("https://images.unsplash.com/photo-1682685797366-715d29e33f9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80");
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    /* Set the height of the top section as per your design */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }
 
 .blog-list-container {
@@ -18,7 +31,7 @@
   }
   .blog-list-container h2 
   {
-    color: #fff;
+    // color: #fff;
   }
   
   .blog-item {

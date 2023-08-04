@@ -6,7 +6,7 @@ const About = () => {
         <div className="about-us-top-section">
         </div>
         <div className="">
-        {/* <h1>About USSSS</h1> */}
+            {/* <h1>About USSSS</h1> */}
         </div>
     </div>);
 }

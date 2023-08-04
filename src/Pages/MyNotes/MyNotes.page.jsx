@@ -37,7 +37,7 @@ const MyNotes = () => {
         };
 
         fetchPdfs();
-        
+
     }, []);
 
 
@@ -53,18 +53,22 @@ const MyNotes = () => {
     return (<>
         {
             user ?
-            <div className="pdf-list-container">
-            <h2 className="pdf-list-heading">Download PDFs</h2>
-            <div className="pdf-list">
-              {pdfs.map((pdf) => (
-                <div key={pdf.name} className="pdf-item">
-                  <span className="pdf-name">{pdf.name}</span>
-                  <button className="download-button" onClick={() => handleDownload(pdf)}>Download</button>
-                  {/* <button className="download-button" onClick={() => handleDownload(pdf.url)}>Download</button> */}
+                <div className="pdf-list-container">
+                    <div className="notes-top-section">
+                    </div>
+                    <div className="pdf-all-list">
+                        <h2 className="pdf-list-heading">Download PDFs</h2>
+                        <div className="pdf-list">
+                            {pdfs.map((pdf) => (
+                                <div key={pdf.name} className="pdf-item">
+                                    <span className="pdf-name">{pdf.name}</span>
+                                    <button className="download-button" onClick={() => handleDownload(pdf)}>Download</button>
+                                    {/* <button className="download-button" onClick={() => handleDownload(pdf.url)}>Download</button> */}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
-              ))}
-            </div>
-          </div>
                 :
 
                 <>

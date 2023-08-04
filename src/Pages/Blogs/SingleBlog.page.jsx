@@ -170,90 +170,94 @@ const SingleBlog = () => {
         <div className='SingleBlog-container'>
             {blog ? (
                 <div className='singleblog-div-main'>
-                    <h2>{blog.title}</h2>
-                    <p>Views: {blog.views * 1}</p>
-                    <p>Read Time: {readTime} minute(s)</p>
-                    {/* Display other blog details */}
-                    <p>{blog.content}</p>
-                    <p>Date: {blog.createdAt && blog.createdAt.toDate().toLocaleDateString()}</p>
-                    <p>Topic: {blog.topic}</p>
-
-                    {/* Display author's name and image */}
-                    {blog.author && (
-                        <div>
-                            <p>Author: {blog.author.name}</p>
-                            {blog.author.image && <img src={blog.author.image} alt={blog.author.name} />}
-                        </div>
-                    )}
-
-
-
-
-                    {/* Display comments */}
-                    <div className='singleblog-comments-section'>
-                    <h3>Comments</h3>
-                    {comments.map((comment) => (
-                        <div className='comments' key={comment.id}>
-                            <p className='commentor-name'>{comment.name}</p>
-                            <p className='comment-content' style={{color:"orange"}}>{comment.content}</p>
-                        </div>
-                    ))}
+                    <div className="blogs-top-section">
                     </div>
+                    <div className='singleblog-div'>
+                        <h2>{blog.title}</h2>
+                        <p>Views: {blog.views * 1}</p>
+                        <p>Read Time: {readTime} minute(s)</p>
+                        {/* Display other blog details */}
+                        <p>{blog.content}</p>
+                        <p>Date: {blog.createdAt && blog.createdAt.toDate().toLocaleDateString()}</p>
+                        <p>Topic: {blog.topic}</p>
 
-                         {/* Comment form */}
-
-                    <div className='comment-form-container'>
-                        <form onSubmit={handleCommentSubmit}>
+                        {/* Display author's name and image */}
+                        {blog.author && (
                             <div>
-                                <label>Name:</label>
-                                <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} />
+                                <p>Author: {blog.author.name}</p>
+                                {blog.author.image && <img src={blog.author.image} alt={blog.author.name} />}
                             </div>
-                            <div>
-                                <label>Email:</label>
-                                <input type="email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} />
-                            </div>
-                            <div>
-                                <label>Comment:</label>
-                                <textarea value={commentContent} onChange={(e) => setCommentContent(e.target.value)} />
-                            </div>
-                            <button type="submit">Submit Comment</button>
-                        </form>
-                    </div>
+                        )}
 
 
-                    {/* Display related blogs */}
-                    {relatedBlogs.length > 0 && (
-                        <div className="related-blogs-container">
-                            <h3>Related Blogs</h3>
-                            {relatedBlogs.map((relatedBlog, index) => (
 
-                                <div key={index}>
-                                    <Link to={`/blog/${relatedBlog.id}`}>
 
-                                        <h4>{relatedBlog.title}</h4>
-
-                                    </Link>
+                        {/* Display comments */}
+                        <div className='singleblog-comments-section'>
+                            <h3>Comments</h3>
+                            {comments.map((comment) => (
+                                <div className='comments' key={comment.id}>
+                                    <p className='commentor-name'>{comment.name}</p>
+                                    <p className='comment-content' style={{ color: "orange" }}>{comment.content}</p>
                                 </div>
                             ))}
                         </div>
-                    )}
 
+                        {/* Comment form */}
 
-
-                    {/* Display "You Missed" blogs */}
-                    {youMissedBlogs.length > 0 && (
-                        <div className="you-missed-blogs-container">
-                            <h3>You Missed</h3>
-                            {youMissedBlogs.map((blog) => (
-                                <div key={blog.id}>
-                                    <Link to={`/blog/${blog.id}`}>
-                                        <h4>{blog.title}</h4>
-                                    </Link>
+                        <div className='comment-form-container'>
+                            <form onSubmit={handleCommentSubmit}>
+                                <div>
+                                    <label>Name:</label>
+                                    <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} />
                                 </div>
-                            ))}
+                                <div>
+                                    <label>Email:</label>
+                                    <input type="email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} />
+                                </div>
+                                <div>
+                                    <label>Comment:</label>
+                                    <textarea value={commentContent} onChange={(e) => setCommentContent(e.target.value)} />
+                                </div>
+                                <button type="submit">Submit Comment</button>
+                            </form>
                         </div>
-                    )}
 
+
+                        {/* Display related blogs */}
+                        {relatedBlogs.length > 0 && (
+                            <div className="related-blogs-container">
+                                <h3>Related Blogs</h3>
+                                {relatedBlogs.map((relatedBlog, index) => (
+
+                                    <div key={index}>
+                                        <Link to={`/blog/${relatedBlog.id}`}>
+
+                                            <h4>{relatedBlog.title}</h4>
+
+                                        </Link>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+
+
+                        {/* Display "You Missed" blogs */}
+                        {youMissedBlogs.length > 0 && (
+                            <div className="you-missed-blogs-container">
+                                <h3>You Missed</h3>
+                                {youMissedBlogs.map((blog) => (
+                                    <div key={blog.id}>
+                                        <Link to={`/blog/${blog.id}`}>
+                                            <h4>{blog.title}</h4>
+                                        </Link>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                    </div>
                 </div>
 
 

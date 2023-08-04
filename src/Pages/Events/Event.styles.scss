@@ -1,16 +1,37 @@
 /* Stylish CSS for Notice Board */
 .notice-board-container {
-    max-width: 800px;
-    margin: 0vh auto;
+    width: 100%;
+    margin: -10vh auto;
     padding-top: 10vh;
     // padding: 20px;
   }
 
+  .notice-top-section{
+    background-image: url("https://images.unsplash.com/photo-1682685797366-715d29e33f9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80");
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    /* Set the height of the top section as per your design */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
   .notice-board-container h2{
-    color:#fff;
+    // color:#fff;
   }
   
+.notices-cont{
+  padding-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
   .notice-item {
+    width: 70%;
     background-color: #f9f9f9;
     border-radius: 8px;
     padding: 16px;

@@ -8,7 +8,7 @@ const NoticeBoardList = () => {
   const [upcomingEvents, setUpcomingEvents] = useState([]);
 
 
-  
+
   // useEffect(() => {
   //   // Fetch notices from Firestore
   //   const fetchNotices = async () => {
@@ -25,22 +25,22 @@ const NoticeBoardList = () => {
 
   useEffect(() => {
     // Fetch upcoming events based on the current date
-     const fetchUpcomingEvents = async () => {
+    const fetchUpcomingEvents = async () => {
       try {
         const currentDate = new Date();
-  
+
         const upcomingEventsSnapshot = await firebase
           .firestore()
           .collection('noticeboard')
           .where('date', '>=', currentDate) // Fetch events with dates greater than or equal to the current date
           .orderBy('date')
           .get();
-  
+
         const upcomingEventsData = upcomingEventsSnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-  
+
         setUpcomingEvents(upcomingEventsData);
       } catch (error) {
         console.error('Error fetching upcoming events:', error);
@@ -48,17 +48,19 @@ const NoticeBoardList = () => {
     };
 
     fetchUpcomingEvents();
-  
-  },[]);
+
+  }, []);
 
   return (
     <div className="notice-board-container">
-       <div>
+      <div className="notice-top-section">
+      </div>
+      <div className='notices-cont'>
         <h2 className="notice-board-heading">Upcoming Events</h2>
         {upcomingEvents.map((event, index) => (
           <div key={event.id} className="notice-item">
             <h3 className="notice-title">{event.title}</h3>
-            <p  className="notice-date">Date: {event.date && event.date.toDate().toLocaleDateString()}</p>
+            <p className="notice-date">Date: {event.date && event.date.toDate().toLocaleDateString()}</p>
             {/* <p>{event.id}</p> */}
             {/* Display other event details */}
           </div>
@@ -66,7 +68,7 @@ const NoticeBoardList = () => {
       </div>
 
       <Link to='/past-events'><h4>View Past Events</h4></Link>
-      
+
     </div>
   );
 };
