@@ -59,7 +59,7 @@ const Home = () => {
                     .firestore()
                     .collection('noticeboard')
                     .orderBy('date', 'desc') // Sort by date in descending order (latest first)
-                    .limit(3) // Limit the results to 3
+                    .limit(4) // Limit the results to 3
                     .get();
 
                 const noticeList = noticeDocs.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
@@ -91,11 +91,11 @@ const Home = () => {
                     <button className="home-page-top-section-button">Find Your Major | अपना पाठ्यक्रम चुनें</button>
                 </div>
                 <div className="middle-section">
-                    <div className="left-half">
-                        <div className="blog-list-container-home">
-                            <h2 className="blog-list-heading-home">Top 3 Events</h2>
+                    <div className="left-half1">
+                        {/* <div className="blog-list-container-home-1"> */}
+                            {/* <h2 className="blog-list-heading-home">Top 3 Events</h2> */}
                             {notices.map((notice) => (
-                                <div key={notice.id} className="blog-item">
+                                <div key={notice.id} className="event-item-home">
                                     <Link to='/events'><h3 className="blog-title">{notice.title}</h3></Link>
                                     
                                     <p>Date: {notice.date && notice.date.toDate().toLocaleDateString()}</p>
@@ -114,13 +114,13 @@ const Home = () => {
                                     {/* Other blog details */}
                                 </div>
                             ))}
-                        </div>
+                        {/* </div> */}
                     </div>
                     <div className="right-half1">
                         <div className="blog-list-container-home1">
                             {/* <h2 className="blog-list-heading-home1">Top 3 Blogs</h2> */}
                             {blogs.map((blog) => (
-                                <div key={blog.id} className="blog-item">
+                                <div key={blog.id} className="blog-item-home">
                                     <Link to={`/blog/${blog.id}`}>
                                         <h3 key={blog.id} className="blog-title">{blog.title}</h3>       </Link>
 
