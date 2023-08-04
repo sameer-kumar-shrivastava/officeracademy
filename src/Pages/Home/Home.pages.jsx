@@ -75,7 +75,7 @@ const Home = () => {
         const words = content.split(' ');
         const trimmedContent = words.slice(0, 50).join(' ');
         return trimmedContent;
-      };
+    };
 
 
 

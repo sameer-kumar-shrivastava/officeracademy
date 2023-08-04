@@ -24,6 +24,12 @@ const Blogs = () => {
         fetchBlogs();
     }, []);
 
+    const getShortContent = (content) => {
+        const words = content.split(' ');
+        const trimmedContent = words.slice(0, 50).join(' ');
+        return trimmedContent;
+    };
+
     return (<div className="blog-page-container">
         {
             user ?
@@ -35,7 +41,7 @@ const Blogs = () => {
                                 <h3 className="blog-title">{blog.title}</h3>
                             </Link>
                             <p className="blog-published-at">Published at: {blog.createdAt && blog.createdAt.toDate().toString()}</p>
-                            <p className="blog-content">{blog.content}</p>
+                            <p className="blog-content">{getShortContent(blog.content)}...<Link to={`/blog/${blog.id}`}>Read More</Link></p>
                             <p className="blog-topic">Topic: {blog.topic}</p>
                             {blog.imageUrl && <img className="blog-image" src={blog.imageUrl} alt={blog.title} />}
                         </div>

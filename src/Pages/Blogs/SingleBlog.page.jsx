@@ -143,7 +143,6 @@ const SingleBlog = () => {
     }, []);
 
 
-
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
 
