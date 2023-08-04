@@ -12,13 +12,6 @@ const BlogForm = () => {
     const user = firebase.auth().currentUser;
 
 
-    // Utility function to trim the content to 15-20 words
-
-    const getShortContent = (content) => {
-        const words = content.split(' ');
-        const trimmedContent = words.slice(0, 20).join(' ');
-        return trimmedContent;
-      };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,8 +40,7 @@ const BlogForm = () => {
                         image: user.photoURL,
                     },
 
-                 // Add shortContent field here (use a function to trim the content)
-                    shortContent: getShortContent(content),
+             
                 });
 
                 // Clear form fields after successful submission

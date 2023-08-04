@@ -68,8 +68,6 @@ const Home = () => {
                 console.error('Error fetching events:', error);
             }
         };
-        console.log({ blogs });
-
         fetchNotices();
     }, []);
 
