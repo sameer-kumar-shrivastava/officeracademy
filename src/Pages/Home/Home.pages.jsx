@@ -93,7 +93,7 @@ const Home = () => {
                 <div className="middle-section">
                     <div className="left-half">
                         <div className="blog-list-container-home">
-                            <h2 className="blog-list-heading-home">Top 3 Events</h2>
+                            {/* <h2 className="blog-list-heading-home">Top 3 Events</h2> */}
                             {notices.map((notice) => (
                                 <div key={notice.id} className="blog-item">
                                     <Link to='/events'><h3 className="blog-title">{notice.title}</h3></Link>
