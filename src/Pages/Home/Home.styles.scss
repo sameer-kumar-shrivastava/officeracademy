@@ -48,8 +48,8 @@
     /* Set styles for the middle section */
     display: flex;
     height: 350px;
-    // background-color: #151515;
-    // width: 100vw;
+    background-color: #151515;
+    width: 100%;
     /* Set the height of the middle section as per your design */
 }
 
@@ -264,10 +264,11 @@ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 .blog-item-home{
   background-color: #f9f9f9;
+  // background-color: #023870;
     border-radius: 8px;
     padding: 16px;
     max-width: 90%;
-    margin-bottom: 20px;
+    margin: 20px 0 20px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -276,13 +277,17 @@ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   // background-color: mediumaquamarine;
   width: 50%;
+  margin: 0 2px 0 0;
 }
 
 .left-half1{
   display: flex;
   width: 50%;
+  // margin-left: 5px;
+  margin: 0 2px 0 2px;
   overflow-x: scroll;
-  border-right: 1px solid #b3b3b3;
+  background-color: #fff;
+  // border-right: 1px solid #b3b3b3;
 }
 
 

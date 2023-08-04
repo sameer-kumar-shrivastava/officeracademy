@@ -40,6 +40,7 @@ const PastEvents = () => {
 
         <div>
         <div className="notice-top-section">
+            <h2 className="notice-board-heading">Past Events</h2>
         </div>
         <div className='notices-cont'>
             <h2 className="notice-board-heading">Past Events</h2>

@@ -55,9 +55,9 @@ const MyNotes = () => {
             user ?
                 <div className="pdf-list-container">
                     <div className="notes-top-section">
+                        <h2 className="pdf-list-heading">Download PDFs</h2>
                     </div>
                     <div className="pdf-all-list">
-                        <h2 className="pdf-list-heading">Download PDFs</h2>
                         <div className="pdf-list">
                             {pdfs.map((pdf) => (
                                 <div key={pdf.name} className="pdf-item">

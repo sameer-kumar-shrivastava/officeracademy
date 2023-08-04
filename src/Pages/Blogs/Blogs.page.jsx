@@ -33,23 +33,23 @@ const Blogs = () => {
     return (<div className="blog-page-container">
         {
             user ?
-            <div>
-            <div className="blogs-top-section">
-        </div>
-                <div className="blog-list-container">
-                    <h2>List of Blogs</h2>
-                    {blogs.map((blog) => (
-                        <div key={blog.id} className="blog-item">
-                            <Link to={`/blog/${blog.id}`}>
-                                <h3 className="blog-title">{blog.title}</h3>
-                            </Link>
-                            <p className="blog-published-at">Published at: {blog.createdAt && blog.createdAt.toDate().toString()}</p>
-                            <p className="blog-content">{getShortContent(blog.content)}...<Link to={`/blog/${blog.id}`}>Read More</Link></p>
-                            <p className="blog-topic">Topic: {blog.topic}</p>
-                            {blog.imageUrl && <img className="blog-image" src={blog.imageUrl} alt={blog.title} />}
-                        </div>
-                    ))}
-                </div>
+                <div>
+                    <div className="blogs-top-section">
+                        <h2>List of Blogs</h2>
+                    </div>
+                    <div className="blog-list-container">
+                        {blogs.map((blog) => (
+                            <div key={blog.id} className="blog-item">
+                                <Link to={`/blog/${blog.id}`}>
+                                    <h3 className="blog-title">{blog.title}</h3>
+                                </Link>
+                                <p className="blog-published-at">Published at: {blog.createdAt && blog.createdAt.toDate().toString()}</p>
+                                <p className="blog-content">{getShortContent(blog.content)}...<Link to={`/blog/${blog.id}`}>Read More</Link></p>
+                                <p className="blog-topic">Topic: {blog.topic}</p>
+                                {blog.imageUrl && <img className="blog-image" src={blog.imageUrl} alt={blog.title} />}
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 :
