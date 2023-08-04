@@ -1,14 +1,25 @@
 .SingleBlog-container{
-    padding: 10vh 0 5vh 0;
-    color:white;
+    padding: 0vh 0 5vh 0;
+    // color:white;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.singleblog-div-main{
+// .singleblog-div-main{
+//     // width: 75%;
+//     text-align: justify;
+//     display: flex;
+//     // align-items: center;
+//     // align-content: center;
+//     justify-content: center;
+// }
+
+.singleblog-div{
     // background-color: aqua;
     width: 75%;
+    margin: auto;
+    padding-top: 10vh;
     text-align: justify;
 }
 

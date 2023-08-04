@@ -33,6 +33,9 @@ const Blogs = () => {
     return (<div className="blog-page-container">
         {
             user ?
+            <div>
+            <div className="blogs-top-section">
+        </div>
                 <div className="blog-list-container">
                     <h2>List of Blogs</h2>
                     {blogs.map((blog) => (
@@ -46,6 +49,7 @@ const Blogs = () => {
                             {blog.imageUrl && <img className="blog-image" src={blog.imageUrl} alt={blog.title} />}
                         </div>
                     ))}
+                </div>
                 </div>
 
                 :
