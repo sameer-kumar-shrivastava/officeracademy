@@ -43,6 +43,7 @@ const PastEvents = () => {
         </div>
         <div className='notices-cont'>
             <h2 className="notice-board-heading">Past Events</h2>
+            <Link to='/events'><h4>View Upcoming Events</h4></Link>
             {pastEvents.map((event) => (
                 <div key={event.id} className="notice-item">
                     <h3 className="notice-title">{event.title}</h3>
@@ -53,7 +54,7 @@ const PastEvents = () => {
             ))}
             </div>
 
-            <Link to='/events'><h4>View Upcoming Events</h4></Link>
+         
         </div>
 
     </>);
