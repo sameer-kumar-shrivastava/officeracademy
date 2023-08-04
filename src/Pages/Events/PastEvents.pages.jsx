@@ -40,9 +40,9 @@ const PastEvents = () => {
 
         <div>
         <div className="notice-top-section">
+            <h2 className="notice-board-heading">Past Events</h2>
         </div>
         <div className='notices-cont'>
-            <h2 className="notice-board-heading">Past Events</h2>
             {pastEvents.map((event) => (
                 <div key={event.id} className="notice-item">
                     <h3 className="notice-title">{event.title}</h3>
