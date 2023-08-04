@@ -96,7 +96,20 @@ const Home = () => {
                             <h2 className="blog-list-heading-home">Top 3 Events</h2>
                             {notices.map((notice) => (
                                 <div key={notice.id} className="blog-item">
-                                    <h3 className="blog-title">{notice.title}</h3>
+                                    <Link to='/events'><h3 className="blog-title">{notice.title}</h3></Link>
+                                    
+                                    <p>Date: {notice.date && notice.date.toDate().toLocaleDateString()}</p>
+                                    {/* Add the venue information as a clickable link */}
+                                    <p>
+                                        Venue:{" "}
+                                        <a
+                                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(notice.venue)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            {notice.venue}
+                                        </a>
+                                    </p>
 
                                     {/* Other blog details */}
                                 </div>
@@ -110,12 +123,12 @@ const Home = () => {
                                 <div key={blog.id} className="blog-item">
                                     <Link to={`/blog/${blog.id}`}>
                                         <h3 key={blog.id} className="blog-title">{blog.title}</h3>       </Link>
-                                   
+
                                     <p>Posted on: {new Date(blog.createdAt.seconds * 1000).toLocaleDateString()}</p>
                                     <p>By:{blog.author.name}</p>
                                     <p>{getShortContent(blog.content)}...<Link to={`/blog/${blog.id}`}>Read More</Link></p>
                                     {/* Add a link to the full blog page */}
-                                    
+
                                     {/* <p>{new Date(blog.createdAt.seconds*1000)}</p> */}
 
                                     {/* Other blog details */}

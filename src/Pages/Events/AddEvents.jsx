@@ -39,6 +39,16 @@ const AddNotice = () => {
                     />
                 </div>
                 <div className="form-group">
+                    <label className="form-label">Venue:</label>
+                    <input
+                        type="text"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        className="form-input"
+                    />
+                </div>
+                
+                <div className="form-group">
                     <label className="form-label">Content:</label>
                     <textarea
                         value={content}
