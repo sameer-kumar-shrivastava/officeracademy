@@ -76,7 +76,7 @@ const Blogs = () => {
                                     </div>
                                     <h3 className="blog-title">{blog.title}</h3>
                                     <div className='blog-items-details-container'>
-                                        <div className='blog-items-details'>{blog.author.image && <img className='single-blog-author-image' src={blog.author.image} alt={blog.author.name} />} By {blog.author.name}</div>
+                                        <div className='blog-items-details'>{blog.author.image && <img className='single-blog-author-image' src={blog.author.image} alt={blog.author.name} />} {blog.author.name}</div>
                                         <div className='blog-items-details'><AccessTimeIcon style={{ marginRight: "10px" }} /> {blog.createdAt && formatDate(blog.createdAt.toDate())}</div>
 
                                         {/* <div className='singleblog-items-details'><PlayLessonIcon style={{ marginRight: "10px" }} /> {readTime} minute(s)</div> */}
