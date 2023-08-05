@@ -170,8 +170,19 @@ const SingleBlog = () => {
         <div className='SingleBlog-container'>
             {blog ? (
                 <div className='singleblog-div-main'>
+
                     <div className="single-blogs-top-section">
-                        {blog.imageUrl && <img className="single-blog-image" src={blog.imageUrl} alt={blog.title} />}
+                        {/* { if({blog.imageUrl}) */}
+                            <img className="single-blog-image" src={blog.imageUrl} alt={blog.title} />
+                        {/* // }  */}
+                        {/* // else{ */}
+                        {/* //     <img className="single-blog-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ0a1txzbLfe5z9288AACnkUEB63kxa1NDow&usqp=CAU" alt="Blog Cover" />
+                        // } } */}
+
+                        {/* ({ blog.imageUrl }=={blog.imageUrl}) ? <h1>image url present</h1> : <h1>Image url absent</h1> */}
+                        {/* <h1>{blog.imageUrl}</h1> */}
+
+
                     </div>
                     <div className='singleblog-div'>
                         <h2>{blog.title}</h2>
@@ -180,7 +191,7 @@ const SingleBlog = () => {
                         {/* Display other blog details */}
                         {/* <p>{blog.content}</p> */}
                         {/* {blog.imageUrl && <img className="blog-image" src={blog.imageUrl} alt={blog.title} />} */}
-                        <div dangerouslySetInnerHTML={{ __html: blog.content }}/>
+                        <div dangerouslySetInnerHTML={{ __html: blog.content }} />
                         <p>Date: {blog.createdAt && blog.createdAt.toDate().toLocaleDateString()}</p>
                         <p>Topic: {blog.topic}</p>
 
