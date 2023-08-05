@@ -180,7 +180,7 @@ const SingleBlog = () => {
                         {/* Display other blog details */}
                         {/* <p>{blog.content}</p> */}
                         {/* {blog.imageUrl && <img className="blog-image" src={blog.imageUrl} alt={blog.title} />} */}
-                        <div dangerouslySetInnerHTML={{ __html: blog.content }}/>
+                        <div dangerouslySetInnerHTML={{ __html: blog.content }} />
                         <p>Date: {blog.createdAt && blog.createdAt.toDate().toLocaleDateString()}</p>
                         <p>Topic: {blog.topic}</p>
 
@@ -196,7 +196,7 @@ const SingleBlog = () => {
 
 
                         {/* Display comments */}
-                        <div className='singleblog-comments-section'>
+                        {/* <div className='singleblog-comments-section'>
                             <h3>Comments</h3>
                             {comments.map((comment) => (
                                 <div className='comments' key={comment.id}>
@@ -204,27 +204,75 @@ const SingleBlog = () => {
                                     <p className='comment-content' style={{ color: "orange" }}>{comment.content}</p>
                                 </div>
                             ))}
+                        </div> */}
+
+
+
+                        <div className="singleblog-comments-section comment-block">
+                            <h3>Comments</h3>
+                            {comments.map((comment) => (
+                                <div className='comments' key={comment.id}>
+                                    <img
+                                        className="comment-image"
+                                        src="https://avatars0.githubusercontent.com/u/12679778?v=4&s=90"
+                                        alt=""
+                                    />
+                                    <div className="comment-dialog">
+                                        <h4 className="username">{comment.name}</h4>
+                                        <p className="text">{comment.content}</p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
 
                         {/* Comment form */}
 
-                        <div className='comment-form-container'>
+                        {/* <div className='comment-form-container'>
                             <form onSubmit={handleCommentSubmit}>
-                                <div>
+                                <div className='comment-form-input-label-container'>
                                     <label>Name:</label>
                                     <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} />
                                 </div>
-                                <div>
+                                <div className='comment-form-input-label-container'>
                                     <label>Email:</label>
                                     <input type="email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} />
                                 </div>
-                                <div>
+                                <div className='comment-form-input-label-container'>
                                     <label>Comment:</label>
                                     <textarea value={commentContent} onChange={(e) => setCommentContent(e.target.value)} />
                                 </div>
                                 <button type="submit">Submit Comment</button>
                             </form>
+                        </div> */}
+
+
+
+                        {/* <div class="single-blog-comment-box-container h-screen bg-gray-800 justify-center items-center"> */}
+                        <div class="comment-form-container single-blog-comment-box bg-white p-2 pt-4 rounded shadow-lg">
+                            <form onSubmit={handleCommentSubmit}>
+                                <div class="single-blog-comment-box-container mx-3">
+                                    <div class="mr-3">
+                                        <img src="http://picsum.photos/50" alt="" class="rounded-full" />
+                                    </div>
+                                    <div>
+                                        <h1 class="font-semibold">{user.displayName}</h1>
+                                        <p class="text-xs text-gray-500">2 seconds ago</p>
+                                    </div>
+                                </div>
+
+                                <div class="p-3 w-full">
+                                    <textarea rows="3" class="single-blog-textarea border p-2 rounded w-full" placeholder="Write something..." value={commentContent} onChange={(e) => setCommentContent(e.target.value)}></textarea>
+                                </div>
+
+                                <div class="comment-button-submit-div mx-3">
+                                    <button class="px-4 py-1 bg-gray-800 text-white rounded font-light hover:bg-gray-700 comment-button-submit">Submit</button>
+                                </div>
+                            </form>
+
                         </div>
+
+                        {/* </div> */}
+
 
 
                         {/* Display related blogs */}
