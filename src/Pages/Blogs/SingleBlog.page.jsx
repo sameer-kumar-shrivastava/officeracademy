@@ -174,6 +174,7 @@ const SingleBlog = () => {
         <div className='SingleBlog-container'>
             {blog ? (
                 <div className='singleblog-div-main'>
+
                     <div className="single-blogs-top-section">
                         {blog.imageUrl ? (
                             <img className="single-blog-image" src={blog.imageUrl} alt={blog.title} />
