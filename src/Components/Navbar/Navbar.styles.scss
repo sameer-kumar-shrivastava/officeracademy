@@ -70,3 +70,73 @@
   .scrolled{
     background-color: rgb(40, 41, 41);
   }
+
+
+
+
+
+  /* ... (Rest of the styles) */
+
+.navbar-mobile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media screen and (min-width: 768px) {
+    display: none; /* Hide the mobile layout for larger screens */
+  }
+}
+
+.navbar-hamburger {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 20px;
+}
+
+.hamburger-line {
+  width: 20px;
+  height: 2px;
+  background-color: #333;
+  transition: transform 0.3s;
+
+  &.open {
+    &:nth-child(1) {
+      transform: translateY(8px) rotate(-45deg);
+    }
+    &:nth-child(2) {
+      opacity: 0;
+    }
+    &:nth-child(3) {
+      transform: translateY(-8px) rotate(45deg);
+    }
+  }
+}
+
+/* Show the mobile menu when active */
+.navbar-menu {
+  /* ... (Rest of the styles) */
+
+  @media screen and (max-width: 768px) {
+    /* Hide the navbar menu for smaller screens */
+    display: none;
+    flex-direction: column;
+    background-color: rgb(40, 41, 41);
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    z-index: 1;
+
+    &.mobile-open {
+      display: flex;
+    }
+
+    li {
+      margin-left: 0;
+      margin-bottom: 10px;
+    }
+  }
+}

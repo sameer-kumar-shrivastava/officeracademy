@@ -15,7 +15,7 @@ const Blogs = () => {
         // Fetch blogs from Firestore
         const fetchBlogs = async () => {
             try {
-                const snapshot = await firebase.firestore().collection('blogs').get();
+                const snapshot = await firebase.firestore().collection('blogs').orderBy('createdAt', 'desc').get();
                 const blogList = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
                 setBlogs(blogList);
 
