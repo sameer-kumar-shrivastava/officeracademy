@@ -74,3 +74,45 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
+  .blog-items-details-container {
+    // width: 50vw;
+    // padding: 5px;
+    margin: 3vh 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    // justify-content: space-around;
+    // background-color: #87decd;
+}
+
+.blog-items-details {
+  height: 5vh;
+  padding-right: 15px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  // background-color: #6b7280;
+  // padding: 5px;
+}
+
+.blogs-link-item{
+  text-decoration: none;
+  color: black;
+}
+
+.blog-items-topic-container {
+  min-width: 5vw;
+  width: min-content;
+  padding: 5px;
+  margin: 5vh 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+  border-radius: 15px;
+  // background-color: #87decd;
+  background-color: rgb(231, 152, 6);
+  box-shadow: 2px 2px 2px 2px black;
+}
