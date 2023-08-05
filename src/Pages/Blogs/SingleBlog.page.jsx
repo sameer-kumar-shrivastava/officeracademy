@@ -175,24 +175,35 @@ const SingleBlog = () => {
             {blog ? (
                 <div className='singleblog-div-main'>
                     <div className="single-blogs-top-section">
-                        {blog.imageUrl && <img className="single-blog-image" src={blog.imageUrl} alt={blog.title} />}
+                        {blog.imageUrl ? (
+                            <img className="single-blog-image" src={blog.imageUrl} alt={blog.title} />
+                        ) : (
+                            <img className="single-blog-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ0a1txzbLfe5z9288AACnkUEB63kxa1NDow&usqp=CAU" alt="Default Image" />
+                        )}
+                        <div className='blog-all-container'>
+                            
+                            <h2 className="blog-title">{blog.title}</h2>
+                            
+                            <div className='singleblog-items-details-container'>
+                                <div className='singleblog-items-details'><VisibilityIcon style={{ marginRight: "10px" }} /> {blog.views * 1}</div>
+                                <div className='singleblog-items-details'>{blog.author.image && <img className='single-blog-author-image' src={blog.author.image} alt={blog.author.name} />} By {blog.author.name}</div>
+                                <div className='singleblog-items-details'><AccessTimeIcon style={{ marginRight: "10px" }} /> {blog.createdAt && blog.createdAt.toDate().toLocaleDateString()}</div>
+                                <div className='singleblog-items-details'><PlayLessonIcon style={{ marginRight: "10px" }} /> {readTime} minute(s)</div>
+                            </div>
+                            
+                        </div>
                     </div>
                     <div className='singleblog-div'>
-                        <h2>{blog.title}</h2>
-                        <div className='singleblog-items-topic-container'>
-                            {blog.topic}
-                        </div>
-                        <div className='singleblog-items-details-container'>
-                            <div className='singleblog-items-details'><VisibilityIcon style={{ marginRight: "10px" }} /> {blog.views * 1}</div>
-                            <div className='singleblog-items-details'>{blog.author.image && <img className='single-blog-author-image' src={blog.author.image} alt={blog.author.name} />} By {blog.author.name}</div>
-                            <div className='singleblog-items-details'><AccessTimeIcon style={{ marginRight: "10px" }} /> {blog.createdAt && blog.createdAt.toDate().toLocaleDateString()}</div>
-                            <div className='singleblog-items-details'><PlayLessonIcon style={{ marginRight: "10px" }} /> {readTime} minute(s)</div>
-                        </div>
+                        {/* <h2>{blog.title}</h2> */}
+
                         {/* <p>Views: {blog.views * 1}</p> */}
                         {/* <p>Read Time: {readTime} minute(s)</p> */}
                         {/* Display other blog details */}
                         {/* <p>{blog.content}</p> */}
                         {/* {blog.imageUrl && <img className="blog-image" src={blog.imageUrl} alt={blog.title} />} */}
+                        <div className='singleblog-items-topic-container'>
+                                {blog.topic}
+                            </div>
                         <div dangerouslySetInnerHTML={{ __html: blog.content }} />
                         {/* <p>Date: {blog.createdAt && blog.createdAt.toDate().toLocaleDateString()}</p> */}
                         {/* <p>Topic: {blog.topic}</p> */}
@@ -294,12 +305,11 @@ const SingleBlog = () => {
                                 <h3>Related Blogs</h3>
                                 <div className='related-blogs'>
                                     {relatedBlogs.map((relatedBlog, index) => (
-
                                         <div className='each-related-blog' key={index}>
                                             <Link to={`/blog/${relatedBlog.id}`}>
                                                 <div className="related-blog-container">
                                                     {relatedBlog.imageUrl && <img className="related-blog-image" src={relatedBlog.imageUrl} alt={relatedBlog.title} />}
-                                                    
+
                                                     <h4 className="related-blog-title"><div className='relatedblog-items-topic-container'>
                                                         {relatedBlog.topic}
                                                     </div>{relatedBlog.title}</h4>
@@ -322,19 +332,19 @@ const SingleBlog = () => {
                             <div className="related-blogs-container">
                                 <h3>You Missed</h3>
                                 <div className='related-blogs'>
-                                {youMissedBlogs.map((blog) => (
-                                    <div className='each-related-blog' key={blog.id}>
-                                        <Link to={`/blog/${blog.id}`}>
+                                    {youMissedBlogs.map((blog) => (
+                                        <div className='each-related-blog' key={blog.id}>
+                                            <Link to={`/blog/${blog.id}`}>
                                                 <div className="related-blog-container">
                                                     {blog.imageUrl && <img className="related-blog-image" src={blog.imageUrl} alt={blog.title} />}
-                                                    
+
                                                     <h4 className="related-blog-title"><div className='relatedblog-items-topic-container'>
                                                         {blog.topic}
                                                     </div>{blog.title}</h4>
                                                 </div>
                                             </Link>
-                                    </div>
-                                ))}
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
                         )}
