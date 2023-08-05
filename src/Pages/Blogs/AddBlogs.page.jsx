@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import firebase from '../../firebase';
 import './AddBlogs.styles.scss';
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // Add the CSS for the editor styles
+
 
 
 const BlogForm = () => {
@@ -40,7 +43,7 @@ const BlogForm = () => {
                         image: user.photoURL,
                     },
 
-             
+
                 });
 
                 // Clear form fields after successful submission
@@ -68,12 +71,15 @@ const BlogForm = () => {
                     onChange={(e) => setTitle(e.target.value)}
                     className="form-input"
                 />
-                <textarea
+
+                {/* Use ReactQuill for the blog content input */}
+                <ReactQuill value={content} onChange={setContent} />
+                {/* <textarea
                     placeholder="Content"
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                     className="form-textarea"
-                />
+                /> */}
                 <input
                     type="text"
                     placeholder="Topic"

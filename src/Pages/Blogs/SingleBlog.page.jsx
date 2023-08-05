@@ -177,7 +177,9 @@ const SingleBlog = () => {
                         <p>Views: {blog.views * 1}</p>
                         <p>Read Time: {readTime} minute(s)</p>
                         {/* Display other blog details */}
-                        <p>{blog.content}</p>
+                        {/* <p>{blog.content}</p> */}
+                        {blog.imageUrl && <img className="blog-image" src={blog.imageUrl} alt={blog.title} />}
+                        <div dangerouslySetInnerHTML={{ __html: blog.content }}/>
                         <p>Date: {blog.createdAt && blog.createdAt.toDate().toLocaleDateString()}</p>
                         <p>Topic: {blog.topic}</p>
 

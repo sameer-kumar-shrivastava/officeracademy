@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // import { AuthContext } from "../../AuthContext";
 import { Link } from "react-router-dom";
 import firebase from '../../firebase';
+import DOMPurify from 'dompurify';
 import "./Home.styles.scss";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
@@ -71,12 +72,14 @@ const Home = () => {
         fetchNotices();
     }, []);
 
-    const getShortContent = (content) => {
+    const getSanitisedShortContent = (content) =>
+    {
         const words = content.split(' ');
         const trimmedContent = words.slice(0, 50).join(' ');
-        return trimmedContent;
-    };
+        const sanitizedContent = DOMPurify.sanitize(trimmedContent); // Sanitize the HTML content
+        return sanitizedContent;
 
+    }
 
 
     return (
@@ -126,7 +129,8 @@ const Home = () => {
 
                                     <p>Posted on: {new Date(blog.createdAt.seconds * 1000).toLocaleDateString()}</p>
                                     <p>By:{blog.author.name}</p>
-                                    <p>{getShortContent(blog.content)}...<Link to={`/blog/${blog.id}`}>Read More</Link></p>
+                                    <div dangerouslySetInnerHTML={{ __html: getSanitisedShortContent(blog.content) }} />
+                                    {/* <p>{getShortContent(blog.content)}...<Link to={`/blog/${blog.id}`}>Read More</Link></p> */}
                                     {/* Add a link to the full blog page */}
 
                                     {/* <p>{new Date(blog.createdAt.seconds*1000)}</p> */}
