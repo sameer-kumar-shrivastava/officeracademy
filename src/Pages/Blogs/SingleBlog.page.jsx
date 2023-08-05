@@ -170,7 +170,8 @@ const SingleBlog = () => {
         <div className='SingleBlog-container'>
             {blog ? (
                 <div className='singleblog-div-main'>
-                    <div className="blogs-top-section">
+                    <div className="single-blogs-top-section">
+                        {blog.imageUrl && <img className="single-blog-image" src={blog.imageUrl} alt={blog.title} />}
                     </div>
                     <div className='singleblog-div'>
                         <h2>{blog.title}</h2>
@@ -178,7 +179,7 @@ const SingleBlog = () => {
                         <p>Read Time: {readTime} minute(s)</p>
                         {/* Display other blog details */}
                         {/* <p>{blog.content}</p> */}
-                        {blog.imageUrl && <img className="blog-image" src={blog.imageUrl} alt={blog.title} />}
+                        {/* {blog.imageUrl && <img className="blog-image" src={blog.imageUrl} alt={blog.title} />} */}
                         <div dangerouslySetInnerHTML={{ __html: blog.content }}/>
                         <p>Date: {blog.createdAt && blog.createdAt.toDate().toLocaleDateString()}</p>
                         <p>Topic: {blog.topic}</p>

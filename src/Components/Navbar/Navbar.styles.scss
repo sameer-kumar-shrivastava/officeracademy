@@ -3,6 +3,7 @@
     height: 10vh;
     width: 100%;
     position: fixed;
+    z-index: 99;
     // width: 150vw;
     // max-width: 1500px; /* Added max-width to center the content */
     // margin: 0 auto; /* Center the container horizontally */
@@ -25,6 +26,7 @@
     display: flex;
     margin: 0;
     padding: 0;
+    align-items: center;
   }
   
   .navbar-menu li {
@@ -51,7 +53,8 @@
   }
 
   .my-notes-button{
-    height: 4vh;
+    height: 5vh;
+    width: 100px;
     border-radius: 4px;
     border: none;
     outline: none;
@@ -59,7 +62,8 @@
   }
 
   .logout-button{
-    height: 4vh;
+    height: 5vh;
+    width: 100px;
     border-radius: 4px;
     border: none;
     outline: none;
@@ -80,25 +84,28 @@
 .navbar-mobile {
   display: flex;
   justify-content: space-between;
+  // text-align: center;
   align-items: center;
+  justify-content: center;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 900px) {
     display: none; /* Hide the mobile layout for larger screens */
   }
 }
 
 .navbar-hamburger {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 20px;
+  display: none;
+  // cursor: pointer;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+  // height: 20px;
 }
 
 .hamburger-line {
-  width: 20px;
+  width: 25px;
   height: 2px;
-  background-color: #333;
+  background-color: rgb(231, 152, 6);;
   transition: transform 0.3s;
 
   &.open {
@@ -109,7 +116,7 @@
       opacity: 0;
     }
     &:nth-child(3) {
-      transform: translateY(-8px) rotate(45deg);
+      transform: translateY(-10px) rotate(45deg);
     }
   }
 }
@@ -118,7 +125,7 @@
 .navbar-menu {
   /* ... (Rest of the styles) */
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 900px) {
     /* Hide the navbar menu for smaller screens */
     display: none;
     flex-direction: column;
@@ -138,5 +145,20 @@
       margin-left: 0;
       margin-bottom: 10px;
     }
+  }
+}
+
+
+@media screen and (max-width: 900px) {
+
+  .navbar-container{
+    background-color: rgb(40, 41, 41);
+  }
+  .navbar-hamburger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 20px;
   }
 }
