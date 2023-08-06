@@ -21,6 +21,8 @@ import PdfUpload from './Pages/MyNotes/AddMyNotes';
 import SingleBlog from './Pages/Blogs/SingleBlog.page';
 import PastEvents from './Pages/Events/PastEvents.pages';
 import FacultyPage from './Pages/AboutUs/Faculty.pages';
+import YouTubeVideosPage from './Pages/Yoututbe Videos/ytvideos.pages';
+import CoursePage from './Pages/Courses/Courses.pages';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -47,6 +49,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route exact path="/signup" element={<SignUp />} />
           <Route exact path="/password-reset" element={<PasswordReset />} />
+          <Route exact path="/courses" element={<CoursePage />} />
           <Route exact path="/mynotes" element={<MyNotes />} />
           <Route exact path="/blogs" element={<Blogs />} />
           <Route exact path="/addblogs" element={<BlogForm />} />
@@ -56,6 +59,7 @@ function App() {
           <Route exact path="/addmynotes" element={<PdfUpload />} />
           <Route path="/blog/:id" element={<SingleBlog/>} />
           <Route path="/faculty" element={<FacultyPage/>} />
+          <Route path="/youtube-videos" element={<YouTubeVideosPage/>} />
 
           {/* <ProtectedRoute exact path="/about" component={<About />} /> */}
           {/* <Route path="/courses" component={Navbar} /> */}

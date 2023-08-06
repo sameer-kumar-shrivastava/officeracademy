@@ -1,0 +1,85 @@
+/* Add this CSS in your SCSS file or create a new CSS file and import it into the component */
+.yt-top-section {
+    // background-image: url("https://images.unsplash.com/photo-1682685796965-9814afcbff55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80");
+    background-size: cover;
+    background-position: center;
+    // background-repeat: no-repeat;
+    height: 300px;
+    width: 100vw;
+    /* Set the height of the top section as per your design */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-top: -3vh;
+    // background-color: black;
+    // background-blend-mode: overlay;
+    // opacity:0.5;
+}
+
+
+.youtube-videos-page {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    // background-color: antiquewhite;
+}
+.video-item {
+    // position: relative;
+//    background-color: aquamarine;
+    // padding: 00vh;
+}
+
+.video-list {
+    width: 90%;
+    display: grid;
+    //     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, auto, auto,auto);
+    grid-gap: 70px;
+    justify-items: center;
+    margin-top: 2vh;
+    // margin-bottom: 2vh;
+}
+// .frame{
+//     margin-bottom: 2vh;
+// }
+// .video-list {
+//     height: auto;
+//     width: 90%;
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+// }
+
+
+
+iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.video-title {
+    margin-top: 10px;
+    /* Add some margin between the video card and the heading */
+}
+
+
+/* Media Query for Desktop Mode */
+@media (min-width: 1024px) {
+    .video-list {
+        grid-template-columns: repeat(3, minmax(300px, 1fr));
+    }
+}

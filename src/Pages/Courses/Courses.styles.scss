@@ -1,0 +1,114 @@
+.courses-top-section{
+    background-image: url("https://images.unsplash.com/photo-1682685796965-9814afcbff55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80");
+    background-size: cover;
+      background-position: center;
+      height: 400px;
+      width: 100vw;
+      /* Set the height of the top section as per your design */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+  }
+
+
+/* Custom styles for the CoursePage component */
+.course-page {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+  
+    .sidebar {
+      flex: 1;
+      border: 1px solid #ccc;
+      padding: 10px;
+  
+      h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+  
+      .subject-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+  
+        li {
+          cursor: pointer;
+          padding: 5px;
+          font-size: 18px;
+          color: #333;
+          border-bottom: 1px solid #ddd;
+  
+          &.active {
+            font-weight: bold;
+            background-color: #f0f0f0;
+          }
+  
+          &:hover {
+            background-color: #f0f0f0;
+          }
+        }
+      }
+    }
+  
+    .main-content {
+      flex: 3;
+  
+      h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+  
+      .syllabus {
+        font-size: 16px;
+      }
+    }
+  }
+
+  /* Custom styles for the CoursePage component */
+.course-page {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+  
+    @media screen and (max-width: 768px) {
+      /* Mobile and tablet layout */
+      flex-direction: column;
+    }
+  
+    .sidebar {
+      /* Styles for the sidebar */
+      flex: 1;
+      min-width: 200px;
+      border: 1px solid #ddd;
+      padding: 20px;
+  
+      @media screen and (max-width: 768px) {
+        /* Mobile and tablet layout */
+        flex: none;
+        width: 100%;
+        border: none;
+        padding: 0;
+        margin-bottom: 20px;
+      }
+    }
+  
+    .main-content {
+      /* Styles for the main content */
+      flex: 3;
+      border: 1px solid #ddd;
+      padding: 20px;
+  
+      @media screen and (max-width: 768px) {
+        /* Mobile and tablet layout */
+        flex: none;
+        width: 100%;
+        border: none;
+        padding: 0;
+      }
+    }
+  }
+  
+  

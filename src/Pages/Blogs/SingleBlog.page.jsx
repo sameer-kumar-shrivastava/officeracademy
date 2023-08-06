@@ -7,6 +7,7 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PlayLessonIcon from '@mui/icons-material/PlayLesson';
 
 import './SingleBlog.styles.scss';
+import Loader from '../../Components/Loader/Loader.component';
 
 const SingleBlog = () => {
     const { id } = useParams();
@@ -20,6 +21,7 @@ const SingleBlog = () => {
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
 
+    
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -326,8 +328,12 @@ const SingleBlog = () => {
                     </div>
                 </div>
 
-            ) : (
-                <p>Loading</p>
+            ) : 
+            
+            (
+               <><Loader/>
+               <p>Loading</p></>
+               
             )}
         </div>
     );

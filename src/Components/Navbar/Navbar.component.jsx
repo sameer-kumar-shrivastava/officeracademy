@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'; // If you are using React Router for navigation
 
 const Navbar = () => {
-  const user = useContext(AuthContext);
+  // const user = useContext(AuthContext);
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
   const [scrolled, setScrolled] = useState(false);
@@ -62,7 +62,7 @@ const Navbar = () => {
 
 
 
-      {user ? (
+      (
         <ul className={`navbar-menu ${showMobileMenu ? 'mobile-open' : ''}`}  onClick={() => setShowMobileMenu(false)}>
         {/* <ul className="navbar-menu"> */}
           <li >
@@ -81,7 +81,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link className="navbar-menu-link" to="/blogs">
+            <Link className="navbar-menu-link" to="/youtube-videos">
               Youtube Videos
             </Link>
           </li>
@@ -103,13 +103,7 @@ const Navbar = () => {
             </button>
           </li>
         </ul>
-      ) : (
-        <ul className="navbar-menu">
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-        </ul>
-      )}
+      ) 
     </div>
   );
 };

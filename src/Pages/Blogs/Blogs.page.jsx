@@ -2,10 +2,10 @@ import React, { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../AuthContext";
 import { Link } from "react-router-dom";
 import './Blogs.styles.scss';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+// import VisibilityIcon from '@mui/icons-material/Visibility';
+// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import PlayLessonIcon from '@mui/icons-material/PlayLesson';
+// import PlayLessonIcon from '@mui/icons-material/PlayLesson';
 import firebase from '../../firebase';
 import DOMPurify from 'dompurify';
 
@@ -65,7 +65,7 @@ const Blogs = () => {
             user ?
                 <div>
                     <div className="blogs-top-section">
-                        <h2>List of Blogs</h2>
+                        <h2>BLOGS</h2>
                     </div>
                     <div className="blog-list-container">
                         {blogs.map((blog) => (

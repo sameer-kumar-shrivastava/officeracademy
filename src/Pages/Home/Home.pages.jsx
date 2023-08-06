@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import firebase from '../../firebase';
 import DOMPurify from 'dompurify';
+import Loader from "../../Components/Loader/Loader.component";
 import "./Home.styles.scss";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
@@ -16,6 +17,9 @@ const Home = () => {
     // const user = useContext(AuthContext);
     const [blogs, setBlogs] = useState([]);
     const [notices, setNotices] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [progress, setProgress] = useState(0);
+    
 
     // useEffect(() => {
     //     const fetchBlogs = async () => {
@@ -42,8 +46,13 @@ const Home = () => {
         // Fetch blogs from Firestore
         const fetchBlogs = async () => {
             try {
+              
                 const snapshot = await firebase.firestore().collection('blogs').orderBy('createdAt', 'desc').limit(3).get();
                 const blogList = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+                // After fetching data, set the progress to 100%
+                setProgress(100);
+                setLoading(false); // Stop loading
                 setBlogs(blogList);
             } catch (error) {
                 console.error('Error fetching blogs:', error);
@@ -72,8 +81,7 @@ const Home = () => {
         fetchNotices();
     }, []);
 
-    const getSanitisedShortContent = (content) =>
-    {
+    const getSanitisedShortContent = (content) => {
         const words = content.split(' ');
         const trimmedContent = words.slice(0, 50).join(' ');
         const sanitizedContent = DOMPurify.sanitize(trimmedContent); // Sanitize the HTML content
@@ -90,35 +98,38 @@ const Home = () => {
                     <h1>General Studies</h1>
                     <h2>सामान्य अध्ययन - for UPSC / BPSC, State PCS, NDA etc.</h2>
                     <h5>इतिहास से अर्थशास्त्र, भूगोल से नीतिशास्त्र, हम सब कुछ पढ़ाते हैं</h5>
-                    <button className="home-page-top-section-button">Find Your Major | अपना पाठ्यक्रम चुनें</button>
+                    <Link to='/courses'><button className="home-page-top-section-button">Find Your Major | अपना पाठ्यक्रम चुनें</button></Link>
+                    {/* <button className="home-page-top-section-button">Find Your Major | अपना पाठ्यक्रम चुनें</button> */}
                 </div>
                 <div className="middle-section">
                     <div className="left-half1">
                         {/* <div className="blog-list-container-home-1"> */}
-                            {/* <h2 className="blog-list-heading-home">Top 3 Events</h2> */}
-                            {notices.map((notice) => (
-                                <div key={notice.id} className="event-item-home">
-                                    <Link to='/events'><h3 className="blog-title">{notice.title}</h3></Link>
-                                    
-                                    <p>Date: {notice.date && notice.date.toDate().toLocaleDateString()}</p>
-                                    {/* Add the venue information as a clickable link */}
-                                    <p>
-                                        Venue:{" "}
-                                        <a
-                                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(notice.venue)}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            {notice.venue}
-                                        </a>
-                                    </p>
+                        {/* <h2 className="blog-list-heading-home">Top 3 Events</h2> */}
+                        {notices.map((notice) => (
+                            <div key={notice.id} className="event-item-home">
+                                <Link to='/events'><h3 className="blog-title">{notice.title}</h3></Link>
 
-                                    {/* Other blog details */}
-                                </div>
-                            ))}
+                                <p>Date: {notice.date && notice.date.toDate().toLocaleDateString()}</p>
+                                {/* Add the venue information as a clickable link */}
+                                <p>
+                                    Venue:{" "}
+                                    <a
+                                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(notice.venue)}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        {notice.venue}
+                                    </a>
+                                </p>
+
+                                {/* Other blog details */}
+                            </div>
+                        ))}
                         {/* </div> */}
                     </div>
                     <div className="right-half1">
+                        {/* Conditionally display the Loader component based on the loading state */}
+                        {loading ? <Loader progress={progress} /> : null}
                         <div className="blog-list-container-home1">
                             {/* <h2 className="blog-list-heading-home1">Top 3 Blogs</h2> */}
                             {blogs.map((blog) => (
@@ -182,7 +193,7 @@ const Home = () => {
                             {/* Titles and options */}
                             <h2>Explore</h2>
                             <ul>
-                                <li>About Us</li>                                
+                                <li>About Us</li>
                                 <li>Events</li>
                                 <li>Contact Us</li>
                                 {/* Add more options as needed */}
@@ -215,10 +226,10 @@ const Home = () => {
                                 <a href="youtube_url" target="_blank" rel="noopener noreferrer">
                                     <img className="social-icon" src={Youtube} alt="Facebook" />
                                 </a>
-
                                 <a href="instagram_url" target="_blank" rel="noopener noreferrer">
                                     <img className="social-icon" src={Linkedin} alt="Facebook" />
                                 </a>
+
                             </div>
                         </div>
                     </div>
