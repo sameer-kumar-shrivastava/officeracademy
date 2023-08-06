@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import firebase from '../../firebase';
 import { Link } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PlayLessonIcon from '@mui/icons-material/PlayLesson';
 
@@ -174,62 +173,28 @@ const SingleBlog = () => {
         <div className='SingleBlog-container'>
             {blog ? (
                 <div className='singleblog-div-main'>
-
                     <div className="single-blogs-top-section">
                         {blog.imageUrl ? (
                             <img className="single-blog-image" src={blog.imageUrl} alt={blog.title} />
                         ) : (
-                            <img className="single-blog-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ0a1txzbLfe5z9288AACnkUEB63kxa1NDow&usqp=CAU" alt="Default Image" />
+                            <img className="single-blog-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ0a1txzbLfe5z9288AACnkUEB63kxa1NDow&usqp=CAU" alt="Default" />
                         )}
                         <div className='blog-all-container'>
-
                             <h2 className="blog-title">{blog.title}</h2>
-
                             <div className='singleblog-items-details-container'>
                                 <div className='singleblog-items-details'><VisibilityIcon style={{ marginRight: "10px" }} /> {blog.views * 1}</div>
                                 <div className='singleblog-items-details'>{blog.author.image && <img className='single-blog-author-image' src={blog.author.image} alt={blog.author.name} />} By {blog.author.name}</div>
                                 <div className='singleblog-items-details'><AccessTimeIcon style={{ marginRight: "10px" }} /> {blog.createdAt && blog.createdAt.toDate().toLocaleDateString()}</div>
                                 <div className='singleblog-items-details'><PlayLessonIcon style={{ marginRight: "10px" }} /> {readTime} minute(s)</div>
                             </div>
-
                         </div>
                     </div>
-                    <div className='singleblog-div'>
-                        {/* <h2>{blog.title}</h2> */}
 
-                        {/* <p>Views: {blog.views * 1}</p> */}
-                        {/* <p>Read Time: {readTime} minute(s)</p> */}
-                        {/* Display other blog details */}
-                        {/* <p>{blog.content}</p> */}
-                        {/* {blog.imageUrl && <img className="blog-image" src={blog.imageUrl} alt={blog.title} />} */}
+                    <div className='singleblog-div'>
                         <div className='singleblog-items-topic-container'>
                             {blog.topic}
                         </div>
                         <div dangerouslySetInnerHTML={{ __html: blog.content }} />
-                        {/* <p>Date: {blog.createdAt && blog.createdAt.toDate().toLocaleDateString()}</p> */}
-                        {/* <p>Topic: {blog.topic}</p> */}
-
-                        {/* Display author's name and image
-                        {blog.author && (
-                            <div>
-                                <p>Author: {blog.author.name}</p>
-                                {blog.author.image && <img src={blog.author.image} alt={blog.author.name} />}
-                            </div>
-                        )} */}
-
-
-
-
-                        {/* Display comments */}
-                        {/* <div className='singleblog-comments-section'>
-                            <h3>Comments</h3>
-                            {comments.map((comment) => (
-                                <div className='comments' key={comment.id}>
-                                    <p className='commentor-name'>{comment.name}</p>
-                                    <p className='comment-content' style={{ color: "orange" }}>{comment.content}</p>
-                                </div>
-                            ))}
-                        </div> */}
 
 
 
@@ -250,29 +215,7 @@ const SingleBlog = () => {
                             ))}
                         </div>
 
-                        {/* Comment form */}
-
-                        {/* <div className='comment-form-container'>
-                            <form onSubmit={handleCommentSubmit}>
-                                <div className='comment-form-input-label-container'>
-                                    <label>Name:</label>
-                                    <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} />
-                                </div>
-                                <div className='comment-form-input-label-container'>
-                                    <label>Email:</label>
-                                    <input type="email" value={userEmail} onChange={(e) => setUserEmail(e.target.value)} />
-                                </div>
-                                <div className='comment-form-input-label-container'>
-                                    <label>Comment:</label>
-                                    <textarea value={commentContent} onChange={(e) => setCommentContent(e.target.value)} />
-                                </div>
-                                <button type="submit">Submit Comment</button>
-                            </form>
-                        </div> */}
-
-
-
-                        {/* <div class="single-blog-comment-box-container h-screen bg-gray-800 justify-center items-center"> */}
+                        {/* Comment Form */}
                         <div class="comment-form-container single-blog-comment-box bg-white p-2 pt-4 rounded shadow-lg">
                             <form onSubmit={handleCommentSubmit}>
                                 <div class="single-blog-comment-box-container mx-3">
@@ -293,14 +236,12 @@ const SingleBlog = () => {
                                     <button class="px-4 py-1 bg-gray-800 text-white rounded font-light hover:bg-gray-700 comment-button-submit">Submit</button>
                                 </div>
                             </form>
-
                         </div>
-
-                        {/* </div> */}
 
 
 
                         {/* Display related blogs */}
+                        <div className='blogs-related-missed-container'>
                         {relatedBlogs.length > 0 && (
                             <div className="related-blogs-container">
                                 <h3>Related Blogs</h3>
@@ -322,12 +263,13 @@ const SingleBlog = () => {
                                 </div>
                             </div>
                         )}
+                        </div>
 
 
 
                         {/* Display "You Missed" blogs */}
                         {youMissedBlogs.length > 0 && (
-                            <div className="related-blogs-container">
+                            <div className="missed-blogs-container">
                                 <h3>You Missed</h3>
                                 <div className='related-blogs'>
                                     {youMissedBlogs.map((blog) => (
@@ -349,14 +291,6 @@ const SingleBlog = () => {
 
                     </div>
                 </div>
-
-
-
-
-
-
-
-
 
             ) : (
                 <p>Loading</p>

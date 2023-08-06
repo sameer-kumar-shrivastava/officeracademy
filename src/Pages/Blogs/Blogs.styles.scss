@@ -102,7 +102,7 @@
 }
 
 .blog-items-topic-container {
-  min-width: 5vw;
+  min-width: 8vw;
   width: min-content;
   padding: 5px;
   margin: 5vh 0;
@@ -110,9 +110,9 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  border: 2px solid black;
+  // border: 2px solid black;
   border-radius: 15px;
   // background-color: #87decd;
   background-color: rgb(231, 152, 6);
-  box-shadow: 2px 2px 2px 2px black;
+  // box-shadow: 2px 2px 2px 2px black;
 }
