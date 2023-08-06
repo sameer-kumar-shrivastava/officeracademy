@@ -68,6 +68,17 @@ const SingleBlog = () => {
     }, [id]);
 
 
+
+    const generateKeyWithPrefix = (prefix, id) => `${prefix}-${id}`;
+
+    const addUniqueIdentifier = (blogsList, prefix) => {
+        return blogsList.map((blog) => ({
+            ...blog,
+            uniqueId: generateKeyWithPrefix(prefix, blog.id),
+        }));
+    };
+
+
     useEffect(() => {
         // Fetch the top 3 related blogs with the same topic as the given blog
         if (blog && blog.topic) {
@@ -87,9 +98,15 @@ const SingleBlog = () => {
                 // Filter out the current blog from the list of related blogs
                 const filteredRelatedBlogs = relatedBlogsData.filter((relatedBlog) => relatedBlog.id !== id);
 
+                // Add a unique identifier to each related blog
+                const blogsWithUniqueId = addUniqueIdentifier(filteredRelatedBlogs, 'related');
 
                 // Set the first 3 filtered blogs as relatedBlogs
-                setRelatedBlogs(filteredRelatedBlogs.slice(0, 3));
+                setRelatedBlogs(blogsWithUniqueId.slice(0, 3));
+
+
+                // // Set the first 3 filtered blogs as relatedBlogs
+                // setRelatedBlogs(filteredRelatedBlogs.slice(0, 3));
             };
 
             fetchRelatedBlogs();
@@ -120,7 +137,14 @@ const SingleBlog = () => {
                     ...doc.data(), // Include other blog data
                 }));
 
-                setYouMissedBlogs(youMissedBlogsData);
+                  // Filter out the current blog from the list of related blogs
+                  const filteredyouMissedBlogs = youMissedBlogsData.filter((youMissedBlog) => youMissedBlog.id !== id);
+
+                // Add a unique identifier to each "You Missed" blog
+                const blogsWithUniqueId = addUniqueIdentifier(filteredyouMissedBlogs, 'missed');
+
+                setYouMissedBlogs(blogsWithUniqueId);
+                // setYouMissedBlogs(youMissedBlogsData);
             } catch (error) {
                 console.error('Error fetching "You Missed" blogs:', error);
             }
@@ -216,24 +240,24 @@ const SingleBlog = () => {
                         </div>
 
                         {/* Comment Form */}
-                        <div class="comment-form-container single-blog-comment-box bg-white p-2 pt-4 rounded shadow-lg">
+                        <div className="comment-form-container single-blog-comment-box bg-white p-2 pt-4 rounded shadow-lg">
                             <form onSubmit={handleCommentSubmit}>
-                                <div class="single-blog-comment-box-container mx-3">
-                                    <div class="mr-3">
-                                        <img src={user.photoURL} alt="" class="rounded-full" />
+                                <div className="single-blog-comment-box-container mx-3">
+                                    <div className="mr-3">
+                                        <img src={user.photoURL} alt="" className="rounded-full" />
                                     </div>
                                     <div>
-                                        <h1 class="font-semibold">{user.displayName}</h1>
+                                        <h1 className="font-semibold">{user.displayName}</h1>
                                         {/* <p class="text-xs text-gray-500">2 seconds ago</p> */}
                                     </div>
                                 </div>
 
-                                <div class="p-3 w-full">
-                                    <textarea rows="3" class="single-blog-textarea border p-2 rounded w-full" placeholder="Write something..." value={commentContent} onChange={(e) => setCommentContent(e.target.value)}></textarea>
+                                <div className="p-3 w-full">
+                                    <textarea rows="3" className="single-blog-textarea border p-2 rounded w-full" placeholder="Write something..." value={commentContent} onChange={(e) => setCommentContent(e.target.value)}></textarea>
                                 </div>
 
-                                <div class="comment-button-submit-div mx-3">
-                                    <button class="px-4 py-1 bg-gray-800 text-white rounded font-light hover:bg-gray-700 comment-button-submit">Submit</button>
+                                <div className="comment-button-submit-div mx-3">
+                                    <button className="px-4 py-1 bg-gray-800 text-white rounded font-light hover:bg-gray-700 comment-button-submit">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -247,7 +271,7 @@ const SingleBlog = () => {
                                     <h3>Related Blogs</h3>
                                     <div className='related-blogs'>
                                         {relatedBlogs.map((relatedBlog, index) => (
-                                            <div className='each-related-blog' key={index}>
+                                            <div className='each-related-blog' key={`related-${relatedBlog.id}-blog`}>
                                                 <Link to={`/blog/${relatedBlog.id}`}>
                                                     <div className="related-blog-container">
                                                         {/* {relatedBlog.imageUrl && <img className="related-blog-image" src={relatedBlog.imageUrl} alt={relatedBlog.title} />} */}
@@ -277,9 +301,10 @@ const SingleBlog = () => {
                                 <h3>You Missed</h3>
                                 <div className='related-blogs'>
                                     {youMissedBlogs.map((blog) => (
-                                        <div className='each-related-blog' key={blog.id}>
+                                        <div className='each-related-blog' key={`missed-${blog.id}-blog`}>
                                             <Link to={`/blog/${blog.id}`}>
                                                 <div className="related-blog-container">
+
                                                     {/* {blog.imageUrl && <img className="related-blog-image" src={blog.imageUrl} alt={blog.title} />} */}
                                                     {blog.imageUrl ? (
                                                         <img className="related-blog-image" src={blog.imageUrl} alt={blog.title} />
@@ -288,6 +313,7 @@ const SingleBlog = () => {
                                                     )}
                                                     <h4 className="related-blog-title"><div className='relatedblog-items-topic-container'>
                                                         {blog.topic}
+
                                                     </div>{blog.title}</h4>
                                                 </div>
                                             </Link>
