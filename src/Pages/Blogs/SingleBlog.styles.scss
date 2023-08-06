@@ -90,6 +90,7 @@
 
 .comment-form-container {
     // background-color: aqua;
+    min-width: 250px;
     margin: 0 0 10vh 0;
 }
 
@@ -389,6 +390,13 @@
     // overflow-y: hidden;
     // flex-wrap: wrap;
     margin-bottom: 5vh;
+    
+}
+
+.related-blogs-container{
+    margin: 0;
+    width: 80vw;
+    // background-color: #87decd;
 }
 
 .related-blogs-container h3{
@@ -409,13 +417,15 @@
     position: relative;
     height: 30vh;
     min-width: 200px;
+    // background-color: #87decd;
     /* Add any other necessary styles for the container */
 }
 
 .related-blog-image {
     height: 30vh;
-    min-width: 200px;
+    width: 100%;
     opacity: 0.2;
+    // object-fit: contain;
 }
 
 .related-blog-title {

@@ -182,16 +182,16 @@ const SingleBlog = () => {
                             <img className="single-blog-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ0a1txzbLfe5z9288AACnkUEB63kxa1NDow&usqp=CAU" alt="Default Image" />
                         )}
                         <div className='blog-all-container'>
-                            
+
                             <h2 className="blog-title">{blog.title}</h2>
-                            
+
                             <div className='singleblog-items-details-container'>
                                 <div className='singleblog-items-details'><VisibilityIcon style={{ marginRight: "10px" }} /> {blog.views * 1}</div>
                                 <div className='singleblog-items-details'>{blog.author.image && <img className='single-blog-author-image' src={blog.author.image} alt={blog.author.name} />} By {blog.author.name}</div>
                                 <div className='singleblog-items-details'><AccessTimeIcon style={{ marginRight: "10px" }} /> {blog.createdAt && blog.createdAt.toDate().toLocaleDateString()}</div>
                                 <div className='singleblog-items-details'><PlayLessonIcon style={{ marginRight: "10px" }} /> {readTime} minute(s)</div>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div className='singleblog-div'>
@@ -203,8 +203,8 @@ const SingleBlog = () => {
                         {/* <p>{blog.content}</p> */}
                         {/* {blog.imageUrl && <img className="blog-image" src={blog.imageUrl} alt={blog.title} />} */}
                         <div className='singleblog-items-topic-container'>
-                                {blog.topic}
-                            </div>
+                            {blog.topic}
+                        </div>
                         <div dangerouslySetInnerHTML={{ __html: blog.content }} />
                         {/* <p>Date: {blog.createdAt && blog.createdAt.toDate().toLocaleDateString()}</p> */}
                         {/* <p>Topic: {blog.topic}</p> */}
@@ -314,10 +314,7 @@ const SingleBlog = () => {
                                                     <h4 className="related-blog-title"><div className='relatedblog-items-topic-container'>
                                                         {relatedBlog.topic}
                                                     </div>{relatedBlog.title}</h4>
-                                                    {/* <div className='related-blog-other-details'>
-                                                    <h4 className="related-blog-author">{relatedBlog.author.image && <img className='single-blog-author-image' src={relatedBlog.author.image} alt={relatedBlog.author.name} />} {relatedBlog.author.name}</h4>
-                                                    <h4 className="related-blog-created-time"><AccessTimeIcon style={{ marginRight: "2px" }} /> {relatedBlog.createdAt && relatedBlog.createdAt.toDate().toLocaleDateString()}</h4>
-                                                    </div> */}
+                                                    
                                                 </div>
                                             </Link>
                                         </div>
