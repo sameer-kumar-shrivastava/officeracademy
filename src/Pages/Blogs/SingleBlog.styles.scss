@@ -597,7 +597,7 @@
         background-color: #87decd;
         color: #fff;
         padding: 0.5rem;
-        max-width: 300px;
+        max-width: 50vw;
         position: relative;
         margin-left: 1.5rem;
         opacity: 0;
@@ -634,6 +634,7 @@
 
     .text {
         margin: 0;
+        color: #6b7280;
     }
 
 }
@@ -684,6 +685,7 @@
 
 .single-blog-comment-box-container {
     display: flex;
+    align-items: center;
 }
 
 .h-screen {
@@ -691,7 +693,8 @@
 }
 
 .rounded-full {
-    border-radius: 25px;
+    height: 5vh;
+    border-radius: 10vw;
 }
 
 .bg-gray-800 {
@@ -840,6 +843,7 @@
     /* Position the title at the vertical center of the container */
     left: 0;
     right: 0;
+    font-size: 1.2rem;
     // text-align: center;
     text-decoration: none;
     color: #d1d5db;

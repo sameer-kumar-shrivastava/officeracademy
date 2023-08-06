@@ -220,11 +220,11 @@ const SingleBlog = () => {
                             <form onSubmit={handleCommentSubmit}>
                                 <div class="single-blog-comment-box-container mx-3">
                                     <div class="mr-3">
-                                        <img src="http://picsum.photos/50" alt="" class="rounded-full" />
+                                        <img src={user.photoURL} alt="" class="rounded-full" />
                                     </div>
                                     <div>
                                         <h1 class="font-semibold">{user.displayName}</h1>
-                                        <p class="text-xs text-gray-500">2 seconds ago</p>
+                                        {/* <p class="text-xs text-gray-500">2 seconds ago</p> */}
                                     </div>
                                 </div>
 
@@ -242,27 +242,31 @@ const SingleBlog = () => {
 
                         {/* Display related blogs */}
                         <div className='blogs-related-missed-container'>
-                        {relatedBlogs.length > 0 && (
-                            <div className="related-blogs-container">
-                                <h3>Related Blogs</h3>
-                                <div className='related-blogs'>
-                                    {relatedBlogs.map((relatedBlog, index) => (
-                                        <div className='each-related-blog' key={index}>
-                                            <Link to={`/blog/${relatedBlog.id}`}>
-                                                <div className="related-blog-container">
-                                                    {relatedBlog.imageUrl && <img className="related-blog-image" src={relatedBlog.imageUrl} alt={relatedBlog.title} />}
+                            {relatedBlogs.length > 0 && (
+                                <div className="related-blogs-container">
+                                    <h3>Related Blogs</h3>
+                                    <div className='related-blogs'>
+                                        {relatedBlogs.map((relatedBlog, index) => (
+                                            <div className='each-related-blog' key={index}>
+                                                <Link to={`/blog/${relatedBlog.id}`}>
+                                                    <div className="related-blog-container">
+                                                        {/* {relatedBlog.imageUrl && <img className="related-blog-image" src={relatedBlog.imageUrl} alt={relatedBlog.title} />} */}
+                                                        {relatedBlog.imageUrl ? (
+                                                            <img className="related-blog-image" src={relatedBlog.imageUrl} alt={relatedBlog.title} />
+                                                        ) : (
+                                                            <img className="related-blog-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ0a1txzbLfe5z9288AACnkUEB63kxa1NDow&usqp=CAU" alt="Default" />
+                                                        )}
+                                                        <h4 className="related-blog-title"><div className='relatedblog-items-topic-container'>
+                                                            {relatedBlog.topic}
+                                                        </div>{relatedBlog.title}</h4>
 
-                                                    <h4 className="related-blog-title"><div className='relatedblog-items-topic-container'>
-                                                        {relatedBlog.topic}
-                                                    </div>{relatedBlog.title}</h4>
-                                                    
-                                                </div>
-                                            </Link>
-                                        </div>
-                                    ))}
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
-                        )}
+                            )}
                         </div>
 
 
@@ -276,8 +280,12 @@ const SingleBlog = () => {
                                         <div className='each-related-blog' key={blog.id}>
                                             <Link to={`/blog/${blog.id}`}>
                                                 <div className="related-blog-container">
-                                                    {blog.imageUrl && <img className="related-blog-image" src={blog.imageUrl} alt={blog.title} />}
-
+                                                    {/* {blog.imageUrl && <img className="related-blog-image" src={blog.imageUrl} alt={blog.title} />} */}
+                                                    {blog.imageUrl ? (
+                                                        <img className="related-blog-image" src={blog.imageUrl} alt={blog.title} />
+                                                    ) : (
+                                                        <img className="related-blog-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ0a1txzbLfe5z9288AACnkUEB63kxa1NDow&usqp=CAU" alt="Default" />
+                                                    )}
                                                     <h4 className="related-blog-title"><div className='relatedblog-items-topic-container'>
                                                         {blog.topic}
                                                     </div>{blog.title}</h4>
