@@ -84,7 +84,6 @@ const Home = () => {
 
     return (
         <>
-            (
             <div className="home-container">
                 <div className="top-section">
                     {/* Background image and other content */}
@@ -183,10 +182,9 @@ const Home = () => {
                             {/* Titles and options */}
                             <h2>Explore</h2>
                             <ul>
-                                <li>About Us</li>
-                                <li>Programs</li>
+                                <li>About Us</li>                                
                                 <li>Events</li>
-                                <li>Campuses</li>
+                                <li>Contact Us</li>
                                 {/* Add more options as needed */}
                             </ul>
                         </div>
@@ -194,9 +192,10 @@ const Home = () => {
                             {/* Titles and options */}
                             <h2>Learn</h2>
                             <ul>
-                                <li>Legal</li>
-                                <li>Privacy</li>
-                                <li>Careers</li>
+                                <li>Privacy Policy</li>
+                                <li>Terms & Conditions</li>
+                                <li>Disclaimer</li>
+                                <li>Job Opportunities</li>
                                 {/* Add more options as needed */}
                             </ul>
                         </div>
@@ -225,7 +224,6 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            )
         </>
     );
 };
