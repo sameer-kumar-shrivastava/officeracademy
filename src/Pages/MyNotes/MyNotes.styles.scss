@@ -48,6 +48,7 @@
   }
   
   .pdf-item {
+    width: 100%;
     display: flex;
     align-items: center;
     background-color: #f5f5f5;
@@ -60,6 +61,31 @@
     flex: 1;
     font-size: 18px;
     font-weight: bold;
+  }
+
+  @media screen and (max-width:700px){
+    .pdf-list {
+    width: 80%;
+    display: grid;
+    gap: 10px;
+  }
+  
+  .pdf-item {
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+    .pdf-name {
+      width: 50%;
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 15px;
+      font-weight: bold;
+    }
   }
   
   .download-button {
