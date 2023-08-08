@@ -21,7 +21,7 @@ const SingleBlog = () => {
     const [userName, setUserName] = useState('');
     const [userEmail, setUserEmail] = useState('');
 
-    
+
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -139,8 +139,8 @@ const SingleBlog = () => {
                     ...doc.data(), // Include other blog data
                 }));
 
-                  // Filter out the current blog from the list of related blogs
-                  const filteredyouMissedBlogs = youMissedBlogsData.filter((youMissedBlog) => youMissedBlog.id !== id);
+                // Filter out the current blog from the list of related blogs
+                const filteredyouMissedBlogs = youMissedBlogsData.filter((youMissedBlog) => youMissedBlog.id !== id);
 
                 // Add a unique identifier to each "You Missed" blog
                 const blogsWithUniqueId = addUniqueIdentifier(filteredyouMissedBlogs, 'missed');
@@ -217,51 +217,53 @@ const SingleBlog = () => {
                     </div>
 
                     <div className='singleblog-div'>
-                        <div className='singleblog-items-topic-container'>
-                            {blog.topic}
-                        </div>
-                        <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+                        <div className='singleblog-div-left-half'>
+                            <div className='singleblog-items-topic-container'>
+                                {blog.topic}
+                            </div>
+                            <div dangerouslySetInnerHTML={{ __html: blog.content }} />
 
 
 
-                        <div className="singleblog-comments-section comment-block">
-                            <h3>Comments</h3>
-                            {comments.map((comment) => (
-                                <div className='comments' key={comment.id}>
-                                    <img
-                                        className="comment-image"
-                                        src="https://avatars0.githubusercontent.com/u/12679778?v=4&s=90"
-                                        alt=""
-                                    />
-                                    <div className="comment-dialog">
-                                        <h4 className="username">{comment.name}</h4>
-                                        <p className="text">{comment.content}</p>
+                            <div className="singleblog-comments-section comment-block">
+                                <h3>Comments</h3>
+                                {comments.map((comment) => (
+                                    <div className='comments' key={comment.id}>
+                                        <img
+                                            className="comment-image"
+                                            src="https://avatars0.githubusercontent.com/u/12679778?v=4&s=90"
+                                            alt=""
+                                        />
+                                        <div className="comment-dialog">
+                                            <h4 className="username">{comment.name}</h4>
+                                            <p className="text">{comment.content}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
 
-                        {/* Comment Form */}
-                        <div className="comment-form-container single-blog-comment-box bg-white p-2 pt-4 rounded shadow-lg">
-                            <form onSubmit={handleCommentSubmit}>
-                                <div className="single-blog-comment-box-container mx-3">
-                                    <div className="mr-3">
-                                        <img src={user.photoURL} alt="" className="rounded-full" />
+                            {/* Comment Form */}
+                            <div className="comment-form-container single-blog-comment-box bg-white p-2 pt-4 rounded shadow-lg">
+                                <form onSubmit={handleCommentSubmit}>
+                                    <div className="single-blog-comment-box-container mx-3">
+                                        <div className="mr-3">
+                                            <img src={user.photoURL} alt="" className="rounded-full" />
+                                        </div>
+                                        <div>
+                                            <h1 className="font-semibold">{user.displayName}</h1>
+                                            {/* <p class="text-xs text-gray-500">2 seconds ago</p> */}
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h1 className="font-semibold">{user.displayName}</h1>
-                                        {/* <p class="text-xs text-gray-500">2 seconds ago</p> */}
+
+                                    <div className="p-3 w-full">
+                                        <textarea rows="3" className="single-blog-textarea border p-2 rounded w-full" placeholder="Write something..." value={commentContent} onChange={(e) => setCommentContent(e.target.value)}></textarea>
                                     </div>
-                                </div>
 
-                                <div className="p-3 w-full">
-                                    <textarea rows="3" className="single-blog-textarea border p-2 rounded w-full" placeholder="Write something..." value={commentContent} onChange={(e) => setCommentContent(e.target.value)}></textarea>
-                                </div>
-
-                                <div className="comment-button-submit-div mx-3">
-                                    <button className="px-4 py-1 bg-gray-800 text-white rounded font-light hover:bg-gray-700 comment-button-submit">Submit</button>
-                                </div>
-                            </form>
+                                    <div className="comment-button-submit-div mx-3">
+                                        <button className="px-4 py-1 bg-gray-800 text-white rounded font-light hover:bg-gray-700 comment-button-submit">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
 
 
@@ -277,6 +279,7 @@ const SingleBlog = () => {
                                                 <Link to={`/blog/${relatedBlog.id}`}>
                                                     <div className="related-blog-container">
                                                         {/* {relatedBlog.imageUrl && <img className="related-blog-image" src={relatedBlog.imageUrl} alt={relatedBlog.title} />} */}
+                                                        
                                                         {relatedBlog.imageUrl ? (
                                                             <img className="related-blog-image" src={relatedBlog.imageUrl} alt={relatedBlog.title} />
                                                         ) : (
@@ -293,48 +296,48 @@ const SingleBlog = () => {
                                     </div>
                                 </div>
                             )}
-                        </div>
 
 
 
-                        {/* Display "You Missed" blogs */}
-                        {youMissedBlogs.length > 0 && (
-                            <div className="missed-blogs-container">
-                                <h3>You Missed</h3>
-                                <div className='related-blogs'>
-                                    {youMissedBlogs.map((blog) => (
-                                        <div className='each-related-blog' key={`missed-${blog.id}-blog`}>
-                                            <Link to={`/blog/${blog.id}`}>
-                                                <div className="related-blog-container">
+                            {/* Display "You Missed" blogs */}
+                            {youMissedBlogs.length > 0 && (
+                                <div className="missed-blogs-container">
+                                    <h3>You Missed</h3>
+                                    <div className='related-blogs'>
+                                        {youMissedBlogs.map((blog) => (
+                                            <div className='each-related-blog' key={`missed-${blog.id}-blog`}>
+                                                <Link to={`/blog/${blog.id}`}>
+                                                    <div className="related-blog-container">
 
-                                                    {/* {blog.imageUrl && <img className="related-blog-image" src={blog.imageUrl} alt={blog.title} />} */}
-                                                    {blog.imageUrl ? (
-                                                        <img className="related-blog-image" src={blog.imageUrl} alt={blog.title} />
-                                                    ) : (
-                                                        <img className="related-blog-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ0a1txzbLfe5z9288AACnkUEB63kxa1NDow&usqp=CAU" alt="Default" />
-                                                    )}
-                                                    <h4 className="related-blog-title"><div className='relatedblog-items-topic-container'>
-                                                        {blog.topic}
+                                                        {/* {blog.imageUrl && <img className="related-blog-image" src={blog.imageUrl} alt={blog.title} />} */}
+                                                        {blog.imageUrl ? (
+                                                            <img className="related-blog-image" src={blog.imageUrl} alt={blog.title} />
+                                                        ) : (
+                                                            <img className="related-blog-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ0a1txzbLfe5z9288AACnkUEB63kxa1NDow&usqp=CAU" alt="Default" />
+                                                        )}
+                                                        <h4 className="related-blog-title"><div className='relatedblog-items-topic-container'>
+                                                            {blog.topic}
 
-                                                    </div>{blog.title}</h4>
-                                                </div>
-                                            </Link>
-                                        </div>
-                                    ))}
+                                                        </div>{blog.title}</h4>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
-                        )}
+                            )}
+                        </div>
 
                     </div>
                 </div>
 
-            ) : 
-            
-            (
-               <><Loader/>
-               <p>Loading</p></>
-               
-            )}
+            ) :
+
+                (
+                    <><Loader />
+                        <p>Loading</p></>
+
+                )}
         </div>
     );
 };
