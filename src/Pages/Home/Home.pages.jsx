@@ -98,7 +98,7 @@ const Home = () => {
                     <h1>General Studies</h1>
                     <h2>सामान्य अध्ययन - for UPSC / BPSC, State PCS, NDA etc.</h2>
                     <h5>इतिहास से अर्थशास्त्र, भूगोल से नीतिशास्त्र, हम सब कुछ पढ़ाते हैं</h5>
-                    <Link to='/courses'><button className="home-page-top-section-button">Find Your Major | अपना पाठ्यक्रम चुनें</button></Link>
+                    <Link className="top-section-link" to='/courses'><button className="home-page-top-section-button">Find Your Major | अपना पाठ्यक्रम चुनें</button></Link>
                     {/* <button className="home-page-top-section-button">Find Your Major | अपना पाठ्यक्रम चुनें</button> */}
                 </div>
                 <div className="middle-section">
@@ -107,7 +107,7 @@ const Home = () => {
                         {/* <h2 className="blog-list-heading-home">Top 3 Events</h2> */}
                         {notices.map((notice) => (
                             <div key={notice.id} className="event-item-home">
-                                <Link to='/events'><h3 className="blog-title">{notice.title}</h3></Link>
+                                <Link className="middle-section-link" to='/events'><h3 className="blog-title">{notice.title}</h3></Link>
 
                                 <p>Date: {notice.date && notice.date.toDate().toLocaleDateString()}</p>
                                 {/* Add the venue information as a clickable link */}
@@ -134,7 +134,7 @@ const Home = () => {
                             {/* <h2 className="blog-list-heading-home1">Top 3 Blogs</h2> */}
                             {blogs.map((blog) => (
                                 <div key={blog.id} className="blog-item-home">
-                                    <Link to={`/blog/${blog.id}`}>
+                                    <Link className="blog-item-home-link" to={`/blog/${blog.id}`}>
                                         <h3 key={blog.id} className="blog-title">{blog.title}</h3>       </Link>
 
                                     <p>Posted on: {new Date(blog.createdAt.seconds * 1000).toLocaleDateString()}</p>

@@ -29,6 +29,10 @@
   margin: 10px;
 }
 
+.top-section-link, .middle-section-link, .event-item-home p a, .blog-item-home-link{
+  text-decoration: none;
+}
+
 .home-page-top-section-button {
   height: 5vh;
   display: flex;
