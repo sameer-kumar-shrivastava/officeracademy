@@ -58,7 +58,7 @@ const NoticeBoardList = () => {
       </div>
       <div className='notices-cont'>
         <h2 className="notice-board-heading">Upcoming Events</h2>
-        <Link to='/past-events'><h4>View Past Events</h4></Link>
+        <Link className='past-events-link' to='/past-events'><h4>View Past Events</h4></Link>
         {upcomingEvents.map((event, index) => (
           <div key={event.id} className="notice-item">
             <h3 className="notice-title">{event.title}</h3>

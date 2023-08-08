@@ -1,11 +1,23 @@
 /* Add this CSS in your SCSS file or create a new CSS file and import it into the component */
+.youtube-videos-page {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    // padding: 20px;
+    text-align: center;
+    // background-color: antiquewhite;
+}
+
 .yt-top-section {
     // background-image: url("https://images.unsplash.com/photo-1682685796965-9814afcbff55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80");
     background-size: cover;
     background-position: center;
     // background-repeat: no-repeat;
     height: 300px;
-    width: 100vw;
+    width: 100%;
     /* Set the height of the top section as per your design */
     display: flex;
     flex-direction: column;
@@ -18,22 +30,11 @@
     // opacity:0.5;
 }
 
-
-.youtube-videos-page {
-    width: 100vw;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    text-align: center;
-    // background-color: antiquewhite;
-}
 .video-item {
     // position: relative;
 //    background-color: aquamarine;
     // padding: 00vh;
+    width: 25vw;
 }
 
 .video-list {
@@ -41,9 +42,10 @@
     display: grid;
     //     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-template-columns: repeat(auto-fit, auto, auto,auto);
-    grid-gap: 70px;
+    grid-gap: 70px 10px;
     justify-items: center;
     margin-top: 2vh;
+    // background-color: aqua;
     // margin-bottom: 2vh;
 }
 // .frame{
