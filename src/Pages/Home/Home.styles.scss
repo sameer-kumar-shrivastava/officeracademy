@@ -1,5 +1,13 @@
 /* Home.styles.scss */
 
+$font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
+$font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+$font-size-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
+$font-size-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
+$font-size-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
+$font-size-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+$font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
+
 .home-container {
   margin-top: -25px;
 }
@@ -21,12 +29,16 @@
 
 .top-section h1 {
   margin-top: 15vh;
-  font-size: 4rem;
+  font-size: $font-size-xxl;
   font-weight: 100;
+}
+.top-section h2{
+  font-size: $font-size-lg;
 }
 
 .top-section h5 {
   margin: 10px;
+  font-size: $font-size-md;
 }
 
 .home-page-top-section-button {
@@ -43,6 +55,7 @@
   background-color: #023870;
   border: none;
   border-radius: 5px;
+  font-size: $font-size-base;
 }
 
 .middle-section {
@@ -139,6 +152,7 @@
     }
   }
 }
+
 
 .footer-section {
   display: flex;
@@ -340,12 +354,12 @@
   }
   .top-section h1{
     width: 90%;
-    font-size: 3em;
+    // font-size: 3em;
     text-align: center;
   }
 
   .top-section h2{
-    font-size: 1.7em;
+    // font-size: 1.7em;
     width: 90%;
     text-align: center;
     // padding-left: 5%;
@@ -353,7 +367,7 @@
   }
 
   .top-section h5{
-    font-size: 1.2em;
+    // font-size: 1.2em;
     width: 90%;
     text-align: center;
   }
