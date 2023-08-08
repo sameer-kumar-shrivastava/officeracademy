@@ -34,14 +34,14 @@
     // position: relative;
 //    background-color: aquamarine;
     // padding: 00vh;
-    width: 25vw;
+    // width: 25vw;
 }
 
 .video-list {
     width: 90%;
     display: grid;
     //     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-template-columns: repeat(auto-fit, auto, auto,auto);
+    grid-template-columns: repeat(auto, auto, auto,auto);
     grid-gap: 70px 10px;
     justify-items: center;
     margin-top: 2vh;
@@ -82,6 +82,7 @@ h3 {
 /* Media Query for Desktop Mode */
 @media (min-width: 1024px) {
     .video-list {
+        // grid-template-columns: repeat(3, auto, auto,auto);
         grid-template-columns: repeat(3, minmax(300px, 1fr));
     }
 }
