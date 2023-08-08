@@ -62,7 +62,7 @@ const Navbar = () => {
 
 
 
-      (
+      
         <ul className={`navbar-menu ${showMobileMenu ? 'mobile-open' : ''}`}  onClick={() => setShowMobileMenu(false)}>
         {/* <ul className="navbar-menu"> */}
           <li >
@@ -103,7 +103,7 @@ const Navbar = () => {
             </button>
           </li>
         </ul>
-      ) 
+      
     </div>
   );
 };

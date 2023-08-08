@@ -152,10 +152,17 @@
 @media screen and (max-width: 900px) {
 
   .navbar-container{
-    width: 100%;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
     background-color: rgb(40, 41, 41);
   }
+  .navbar-logo{
+    // padding-right: 20vw;
+  }
   .navbar-hamburger {
+    margin: 0;
     cursor: pointer;
     display: flex;
     flex-direction: column;
