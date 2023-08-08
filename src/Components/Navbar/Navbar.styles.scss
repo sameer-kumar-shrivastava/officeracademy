@@ -1,85 +1,99 @@
-  .navbar-container {
-    margin-top: 0;
-    height: 10vh;
-    width: 100%;
-    position: fixed;
-    z-index: 99;
-    // width: 150vw;
-    // max-width: 1500px; /* Added max-width to center the content */
-    // margin: 0 auto; /* Center the container horizontally */
-    // background-color: rgb(40, 41, 41);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    // background-color: aliceblue;
-  }
-  
-  .navbar-logo {
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #333;
-  }
-  
-  .navbar-menu {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-  }
-  
-  .navbar-menu li {
-    margin-left: 20px;
-  }
-  
-  .navbar-menu li:first-child {
-    margin-left: 0;
-  }
+$font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
+$font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
+$font-size-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);
+$font-size-lg: clamp(1.56rem, 1vw + 1.31rem, 2.11rem);
+$font-size-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
+$font-size-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+$font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
 
-  .navbar-menu-link{
-    text-decoration: none;
-    color: aliceblue;
-  }
-  
-  .nav-word1{
-    color: aliceblue;
-    font-weight: bold;
-  }
+.navbar-container {
+  margin-top: 0;
+  height: 10vh;
+  width: 100%;
+  position: fixed;
+  z-index: 99;
+  // width: 150vw;
+  // max-width: 1500px; /* Added max-width to center the content */
+  // margin: 0 auto; /* Center the container horizontally */
+  // background-color: rgb(40, 41, 41);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  // background-color: aliceblue;
+}
 
-  .nav-word2{
-    color: #8d8c8c;
-    font-weight: normal;
-  }
+.navbar-logo {
+  font-size: $font-size-md;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
 
-  .my-notes-button{
-    height: 5vh;
-    width: 100px;
-    border-radius: 4px;
-    border: none;
-    outline: none;
-    background-color: rgb(231, 152, 6);
-  }
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  font-size: $font-size-sm;
+}
 
-  .logout-button{
-    height: 5vh;
-    width: 100px;
-    border-radius: 4px;
-    border: none;
-    outline: none;
-    color: aliceblue;
-    background-color: rgb(228, 78, 24);
-  }
+.navbar-menu li {
+  margin-left: 20px;
+}
 
-  .scrolled{
-    background-color: rgb(40, 41, 41);
-  }
+.navbar-menu li:first-child {
+  margin-left: 0;
+}
+
+.navbar-menu-link {
+  text-decoration: none;
+  color: aliceblue;
+}
+
+.nav-word1 {
+  color: aliceblue;
+  font-weight: bold;
+}
+
+.nav-word2 {
+  color: #8d8c8c;
+  font-weight: normal;
+}
+// .nav-word2{
+//   color: #123412;
+//   font-weight: normal; 
+//   font-size: xx-small;
+// }
+
+.my-notes-button {
+  height: 4vh;
+  width: 80px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  background-color: rgb(231, 152, 6);
+}
+
+.logout-button {
+  height: 4vh;
+  width: 80px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  color: aliceblue;
+  background-color: rgb(228, 78, 24);
+}
+
+.scrolled {
+  background-color: rgb(40, 41, 41);
+}
 
 
 
 
 
-  /* ... (Rest of the styles) */
+/* ... (Rest of the styles) */
 
 .navbar-mobile {
   display: flex;
@@ -89,7 +103,8 @@
   justify-content: center;
 
   @media screen and (min-width: 900px) {
-    display: none; /* Hide the mobile layout for larger screens */
+    display: none;
+    /* Hide the mobile layout for larger screens */
   }
 }
 
@@ -105,16 +120,19 @@
 .hamburger-line {
   width: 25px;
   height: 2px;
-  background-color: rgb(231, 152, 6);;
+  background-color: rgb(231, 152, 6);
+  ;
   transition: transform 0.3s;
 
   &.open {
     &:nth-child(1) {
       transform: translateY(8px) rotate(-45deg);
     }
+
     &:nth-child(2) {
       opacity: 0;
     }
+
     &:nth-child(3) {
       transform: translateY(-10px) rotate(45deg);
     }
@@ -151,16 +169,18 @@
 
 @media screen and (max-width: 900px) {
 
-  .navbar-container{
+  .navbar-container {
     width: 100vw;
     display: flex;
     flex-direction: row;
-    justify-content:space-around;
+    justify-content: space-around;
     background-color: rgb(40, 41, 41);
   }
-  .navbar-logo{
+
+  .navbar-logo {
     // padding-right: 20vw;
   }
+
   .navbar-hamburger {
     margin: 0;
     cursor: pointer;
@@ -169,7 +189,8 @@
     justify-content: space-between;
     height: 20px;
   }
-  .hamburger-line{
+
+  .hamburger-line {
     background-color: #fff;
   }
 }
