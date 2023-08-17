@@ -164,7 +164,7 @@ $font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
 }
 
 .blog-title {
-  padding: 5px;
+  padding: 0px;
   margin: 0;
   // background-color: chartreuse;
 }
@@ -415,7 +415,7 @@ $font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
 .right-half1 {
   overflow-y: scroll;
   // background-color: #fff;
-  background-color: rgb(255, 217, 152);
+  background-color: rgb(255, 216, 148);
   width: 50%;
   margin: 0 2px 0 0;
 }
@@ -563,3 +563,6 @@ $font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
     width: 100%;
   }
 }
+
+
+

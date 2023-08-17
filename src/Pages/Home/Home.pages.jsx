@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import firebase from '../../firebase';
 import DOMPurify from 'dompurify';
 import Loader from "../../Components/Loader/Loader.component";
+import Spinner from "../../Components/Spinner/Spinner.component";
 import "./Home.styles.scss";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
@@ -17,7 +18,7 @@ const Home = () => {
     // const user = useContext(AuthContext);
     const [blogs, setBlogs] = useState([]);
     const [notices, setNotices] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [progress, setProgress] = useState(0);
 
 
@@ -56,6 +57,7 @@ const Home = () => {
                 setBlogs(blogList);
             } catch (error) {
                 console.error('Error fetching blogs:', error);
+                setLoading(false);
             }
         };
 
@@ -118,35 +120,48 @@ const Home = () => {
                     {/* <button className="home-page-top-section-button">Find Your Major | अपना पाठ्यक्रम चुनें</button> */}
                 </div>
                 <div className="middle-section">
+
+
                     <div className="left-half1">
                         {/* <div className="blog-list-container-home-1"> */}
-                        <h2 className="blog-list-heading-home">Upcoming Events</h2>
-                        {notices.map((notice) => (
-                            <div key={notice.id} className="event-item-home">
-                                <Link className="middle-section-link" to='/events'>
-                                    <div className="blog-home-page-date-section">{notice.date &&
-                                        <div className="blog-home-page-date-section">
-                                            <span>{formatDate(notice.date.toDate()).split('\n')[0]}</span>
 
-                                            <span>{formatDate(notice.date.toDate()).split('\n')[1]}</span>
-                                        </div>}
+                        <h2 className="blog-list-heading-home">Upcoming Events</h2>
+
+                        {
+                            (loading) ?
+                                <>
+                                    <Spinner />
+                                </>
+
+                                :
+                                notices.map((notice) => (
+                                    <div key={notice.id} className="event-item-home">
+                                        <Link className="middle-section-link" to='/events'>
+                                            <div className="blog-home-page-date-section">{notice.date &&
+                                                <div className="blog-home-page-date-section">
+                                                    <span>{formatDate(notice.date.toDate()).split('\n')[0]}</span>
+
+                                                    <span>{formatDate(notice.date.toDate()).split('\n')[1]}</span>
+                                                </div>}
+                                            </div>
+                                            <div className="blog-home-page-right">
+                                                <h3 className="blog-title">{notice.title}</h3>
+                                                <p>
+                                                    Venue:{" "}
+                                                    <a
+                                                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(notice.venue)}`}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                    >
+                                                        {notice.venue}
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </Link>
                                     </div>
-                                    <div className="blog-home-page-right">
-                                        <h3 className="blog-title">{notice.title}</h3>
-                                        <p>
-                                            Venue:{" "}
-                                            <a
-                                                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(notice.venue)}`}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                {notice.venue}
-                                            </a>
-                                        </p>
-                                    </div>
-                                </Link>
-                            </div>
-                        ))}
+                                ))
+
+                        }
                         {/* </div> */}
                     </div>
 
@@ -154,35 +169,46 @@ const Home = () => {
                         {/* Conditionally display the Loader component based on the loading state */}
                         {/* {loading ? <Loader progress={progress} /> : null} */}
                         {/* <div className="blog-list-container-home1"> */}
+
                         <h2 className="blog-list-heading-home">From Our Blogs</h2>
-                        {blogs.map((blog) => (
-                            <div key={blog.id} className="event-item-home">
-                                <Link className="middle-section-link-right" to={`/blog/${blog.id}`}>
-                                    <div className="blog-home-page-left">
-                                    <div className="blog-home-page-date-section-right">{blog.createdAt &&
-                                        <>
-                                            <span>{formatDate(blog.createdAt.toDate()).split('\n')[0]}</span>
 
-                                            <span>{formatDate(blog.createdAt.toDate()).split('\n')[1]}</span>
-                                        </>}
-                                        </div>
+
+
+                        {
+                            (loading) ?
+                                <>
+                                    <Spinner />
+                                </>
+
+                                :
+                                blogs.map((blog) => (
+                                    <div key={blog.id} className="event-item-home">
+                                        <Link className="middle-section-link-right" to={`/blog/${blog.id}`}>
+                                            <div className="blog-home-page-left">
+                                                <div className="blog-home-page-date-section-right">{blog.createdAt &&
+                                                    <>
+                                                        <span>{formatDate(blog.createdAt.toDate()).split('\n')[0]}</span>
+
+                                                        <span>{formatDate(blog.createdAt.toDate()).split('\n')[1]}</span>
+                                                    </>}
+                                                </div>
+                                            </div>
+                                            <div className="blog-home-page-right">
+                                                <h3 key={blog.id} className="blog-title">{blog.title}</h3>
+                                                <div className="blog-home-page-right-div">
+                                                    {/* <p>By:{blog.author.name}</p> */}
+                                                    <div dangerouslySetInnerHTML={{ __html: getSanitisedShortContent(blog.content) }} />
+                                                </div>
+                                            </div>
+                                        </Link>
+                                        {/* <p>{getShortContent(blog.content)}...<Link to={`/blog/${blog.id}`}>Read More</Link></p> */}
+                                        {/* Add a link to the full blog page */}
+
+                                        {/* <p>{new Date(blog.createdAt.seconds*1000)}</p> */}
+
+                                        {/* Other blog details */}
                                     </div>
-                                    <div className="blog-home-page-right">
-                                        <h3 key={blog.id} className="blog-title">{blog.title}</h3>
-                                        <div className="blog-home-page-right-div">
-                                            {/* <p>By:{blog.author.name}</p> */}
-                                            <div dangerouslySetInnerHTML={{ __html: getSanitisedShortContent(blog.content) }} />
-                                        </div>
-                                    </div>
-                                </Link>
-                                {/* <p>{getShortContent(blog.content)}...<Link to={`/blog/${blog.id}`}>Read More</Link></p> */}
-                                {/* Add a link to the full blog page */}
-
-                                {/* <p>{new Date(blog.createdAt.seconds*1000)}</p> */}
-
-                                {/* Other blog details */}
-                            </div>
-                        ))}
+                                ))}
                         {/* </div> */}
                     </div>
                 </div>
