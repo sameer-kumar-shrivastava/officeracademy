@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'; // If you are using React Router for navigation
 
 const Navbar = () => {
-  // const user = useContext(AuthContext);
+  const user = useContext(AuthContext);
   const navigate = useNavigate();
   const authContext = useContext(AuthContext);
   const [scrolled, setScrolled] = useState(false);
@@ -98,9 +98,19 @@ const Navbar = () => {
             </button>
           </li>
           <li>
-            <button className="logout-button" onClick={handleLogout}>
-              Logout
-            </button>
+            {
+              user?
+              <button className="logout-button" onClick={handleLogout}>Logout</button>
+              :
+              <Link to='/login'><button className="logout-button">Login</button></Link>
+
+            }
+            {/* <button className="logout-button" onClick={handleLogout}>
+              {
+                user?"Login":"Logout"
+              }
+              
+            </button> */}
           </li>
         </ul>
       
