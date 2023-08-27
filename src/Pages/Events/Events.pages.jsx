@@ -8,7 +8,6 @@ const NoticeBoardList = () => {
   const [upcomingEvents, setUpcomingEvents] = useState([]);
 
 
-
   // useEffect(() => {
   //   // Fetch notices from Firestore
   //   const fetchNotices = async () => {
@@ -69,7 +68,7 @@ const NoticeBoardList = () => {
         ))}
       </div>
 
-      
+
 
     </div>
   );

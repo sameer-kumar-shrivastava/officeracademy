@@ -104,10 +104,6 @@ const Home = () => {
     };
 
 
-
-
-
-
     return (
         <>
             <div className="home-container">
@@ -119,45 +115,48 @@ const Home = () => {
                     <Link className="top-section-link" to='/courses'><button className="home-page-top-section-button">Find Your Major | अपना पाठ्यक्रम चुनें</button></Link>
                     {/* <button className="home-page-top-section-button">Find Your Major | अपना पाठ्यक्रम चुनें</button> */}
                 </div>
+
+
                 <div className="middle-section">
-
-
                     <div className="left-half1">
                         {/* <div className="blog-list-container-home-1"> */}
-
                         <h2 className="blog-list-heading-home">Upcoming Events</h2>
-
                         {
                             (loading) ?
                                 <>
                                     <Spinner />
                                 </>
-
                                 :
                                 notices.map((notice) => (
                                     <div key={notice.id} className="event-item-home">
-                                        <Link className="middle-section-link" to='/events'>
-                                            <div className="blog-home-page-date-section">{notice.date &&
-                                                <div className="blog-home-page-date-section">
-                                                    <span>{formatDate(notice.date.toDate()).split('\n')[0]}</span>
+                                        <div className="middle-section-link">
+                                            <div className="blog-home-page-left">
+                                                <Link className="blog-link" to='/events'>
+                                                    <div className="blog-home-page-date-section-right">{notice.date &&
+                                                        <>
+                                                            <span>{formatDate(notice.date.toDate()).split('\n')[0]}</span>
 
-                                                    <span>{formatDate(notice.date.toDate()).split('\n')[1]}</span>
-                                                </div>}
+                                                            <span>{formatDate(notice.date.toDate()).split('\n')[1]}</span></>}
+                                                    </div>
+                                                </Link>
                                             </div>
+
                                             <div className="blog-home-page-right">
-                                                <h3 className="blog-title">{notice.title}</h3>
-                                                <p>
-                                                    Venue:{" "}
-                                                    <a
-                                                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(notice.venue)}`}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                    >
-                                                        {notice.venue}
-                                                    </a>
-                                                </p>
+                                                <Link className="blog-link" to='/events'> <h3 className="blog-title">{notice.title}</h3></Link>
+                                                <div className="blog-home-page-right-div">
+                                                    <p>
+                                                        Venue:{" "}
+                                                        <a
+                                                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(notice.venue)}`}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                        >
+                                                            {notice.venue}
+                                                        </a>
+                                                    </p>
+                                                </div>
                                             </div>
-                                        </Link>
+                                        </div>
                                     </div>
                                 ))
 

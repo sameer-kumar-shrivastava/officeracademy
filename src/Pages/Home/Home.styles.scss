@@ -86,16 +86,18 @@ $font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
 .middle-section-link {
   display: flex;
   height: auto;
-  width: 70%;
-  align-items: center;
-  // justify-content: space-between;
+  width: 50%;
+  // min-width: 60%;
+  // align-items: center;
+  // justify-content: center;
   // background-color: #4f4f4f;
 }
 
 .middle-section-link-right {
   display: flex;
   height: auto;
-  width: 70%;
+  width: 60%;
+  min-width: 50%;
   // align-items: center;
   // justify-content: space-between;
   // background-color: #4f4f4f;
@@ -136,6 +138,10 @@ $font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
   background-color: rgb(231, 152, 6);
 }
 
+.blog-link{
+  text-decoration: none;
+}
+
 // .blog-home-page-date-section-div{
 //   height: 200px;
 //   width: 8vh;
@@ -156,7 +162,7 @@ $font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
 .blog-home-page-right {
   display: flex;
   height: auto;
-  width: 100%;
+  // width: 100%;
   flex-direction: column;
   justify-content: center;
   padding: 10px;
@@ -173,6 +179,10 @@ $font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
   padding: 5px;
   margin: 0;
   // background-color: chocolate;
+}
+
+.blog-home-page-right-div{
+  // background-color: chartreuse;
 }
 
 .left-half {
