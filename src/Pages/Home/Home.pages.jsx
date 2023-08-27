@@ -141,7 +141,7 @@ const Home = () => {
                                         <div className="middle-section-link">
                                             <div className="blog-home-page-left">
                                                 <Link className="blog-link" to='/events'>
-                                                    <div className="blog-home-page-date-section-right">{notice.date &&
+                                                    <div className="blog-home-page-date-section">{notice.date &&
                                                         <>
                                                             <span>{formatDate(notice.date.toDate()).split('\n')[0]}</span>
 
