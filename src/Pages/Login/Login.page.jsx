@@ -1,14 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import firebase from '../../firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.styles.scss';
 import GoogleLogo from './googlelogo.png';
+import { AuthContext } from '../../AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const authContext = useContext(AuthContext);
+
+  // useEffect(() => {
+  //   // Handle the redirect result
+  //   firebase.auth().getRedirectResult()
+  //     .then((result) => {
+  //       if (result.credential) {
+  //         // This gives you a Google Access Token
+  //         // const token = result.credential.accessToken;
+  //         // ...
+  //       }
+  //       // The signed-in user info
+  //       const user = result.user;
+  //       authContext.setUser(user);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Google sign-in redirect error:', error);
+  //     });
+  // }, [authContext]);
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -35,10 +56,12 @@ const Login = () => {
     firebase
       .auth()
       .signInWithPopup(provider)
+      // .signInWithRedirect(provider)
       .then((result) => {
         // The user is signed in with Google successfully.
         // You can access the user's data through result.user, e.g.:
-        // const user = result.user;
+        const user = result.user;
+        authContext.setUser(user);
         navigate('/');
       })
       .catch((error) => {

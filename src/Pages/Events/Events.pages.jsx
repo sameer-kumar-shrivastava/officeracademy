@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../../firebase';
 import './Event.styles.scss';
+import Spinner from '../../Components/Spinner/Spinner.component';
 import { Link } from 'react-router-dom';
 
 const NoticeBoardList = () => {
   // const [notices, setNotices] = useState([]);
   const [upcomingEvents, setUpcomingEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
 
 
 
@@ -41,9 +43,12 @@ const NoticeBoardList = () => {
           ...doc.data(),
         }));
 
+        setLoading(false);
+
         setUpcomingEvents(upcomingEventsData);
       } catch (error) {
         console.error('Error fetching upcoming events:', error);
+        setLoading(false);
       }
     };
 
@@ -59,14 +64,28 @@ const NoticeBoardList = () => {
       <div className='notices-cont'>
         <h2 className="notice-board-heading">Upcoming Events</h2>
         <Link className='past-events-link' to='/past-events'><h4>View Past Events</h4></Link>
-        {upcomingEvents.map((event, index) => (
+        {
+          
+          (loading) ?
+          <>
+              <Spinner />
+            
+          </>
+
+          :
+          (
+          
+        upcomingEvents.map((event, index) => (
           <div key={event.id} className="notice-item">
             <h3 className="notice-title">{event.title}</h3>
             <p className="notice-date">Date: {event.date && event.date.toDate().toLocaleDateString()}</p>
             {/* <p>{event.id}</p> */}
             {/* Display other event details */}
           </div>
-        ))}
+        )))
+        
+        }
+
       </div>
 
       

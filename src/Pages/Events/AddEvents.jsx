@@ -6,6 +6,7 @@ const AddNotice = () => {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [date, setDate] = useState('');
+    const [venue,setVenue] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -15,11 +16,13 @@ const AddNotice = () => {
                 title,
                 content,
                 date: new Date(date), // Convert date string to a JavaScript Date object
+                venue,
             });
 
             setTitle('');
             setContent('');
             setDate('');
+            setVenue('');
         } catch (error) {
             console.error('Error adding notice:', error);
         }
@@ -42,8 +45,8 @@ const AddNotice = () => {
                     <label className="form-label">Venue:</label>
                     <input
                         type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
+                        value={venue}
+                        onChange={(e) => setVenue(e.target.value)}
                         className="form-input"
                     />
                 </div>

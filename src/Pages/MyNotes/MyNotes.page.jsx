@@ -5,6 +5,7 @@ import './MyNotes.styles.scss';
 // import firebase from '../../firebase';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
+import Spinner from "../../Components/Spinner/Spinner.component";
 
 // import React, { useState, useEffect } from 'react';
 // import firebase from 'firebase/app';
@@ -15,6 +16,7 @@ const MyNotes = () => {
     const user = useContext(AuthContext);
 
     const [pdfs, setPdfs] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Fetch PDFs from Firebase Storage
@@ -30,8 +32,10 @@ const MyNotes = () => {
                         return { name: item.name, url };
                     })
                 );
+                setLoading(false);
                 setPdfs(pdfList);
             } catch (error) {
+                setLoading(false);
                 console.error('Error fetching PDFs:', error);
             }
         };
@@ -59,7 +63,11 @@ const MyNotes = () => {
                     </div>
                     <div className="pdf-all-list">
                         <div className="pdf-list">
-                            {pdfs.map((pdf) => (
+                            {
+                                loading?
+                              <Spinner/>:
+                            
+                            pdfs.map((pdf) => (
                                 <div key={pdf.name} className="pdf-item">
                                     <span className="pdf-name">{pdf.name}</span>
                                     <button className="download-button" onClick={() => handleDownload(pdf)}>Download</button>
