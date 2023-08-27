@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../AuthContext";
 import { Link } from "react-router-dom";
 import './Blogs.styles.scss';
+import Spinner from "../../Components/Spinner/Spinner.component";
 // import VisibilityIcon from '@mui/icons-material/Visibility';
 // import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -12,6 +13,7 @@ import DOMPurify from 'dompurify';
 const Blogs = () => {
     const user = useContext(AuthContext);
     const [blogs, setBlogs] = useState([]);
+    const [loading, setLoading] = useState(true);
     // const [blogContent, setBlogContent] = useState('');
 
     useEffect(() => {
@@ -20,6 +22,7 @@ const Blogs = () => {
             try {
                 const snapshot = await firebase.firestore().collection('blogs').orderBy('createdAt', 'desc').get();
                 const blogList = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+                setLoading(false);
                 setBlogs(blogList);
 
                 // if (blogList.exists) {
@@ -32,6 +35,7 @@ const Blogs = () => {
 
             } catch (error) {
                 console.error('Error fetching blogs:', error);
+                setLoading(false);
             }
         };
 
@@ -68,7 +72,16 @@ const Blogs = () => {
                         <h2>BLOGS</h2>
                     </div>
                     <div className="blog-list-container">
-                        {blogs.map((blog) => (
+                        {
+                             (loading) ?
+                             <>
+                                 <Spinner />
+                               
+                             </>
+                   
+                             :
+                        
+                        blogs.map((blog) => (
                             <div key={blog.id} className="blog-item">
                                 <Link className="blogs-link-item" to={`/blog/${blog.id}`}>
                                     <div className='blog-items-topic-container'>
