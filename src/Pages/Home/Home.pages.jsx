@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import firebase from '../../firebase';
 import DOMPurify from 'dompurify';
-import Loader from "../../Components/Loader/Loader.component";
+// import Loader from "../../Components/Loader/Loader.component";
 import Spinner from "../../Components/Spinner/Spinner.component";
 import "./Home.styles.scss";
 import { Carousel } from "react-bootstrap";
@@ -19,7 +19,8 @@ const Home = () => {
     const [blogs, setBlogs] = useState([]);
     const [notices, setNotices] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [progress, setProgress] = useState(0);
+    // const [progress, setProgress] = useState(0);
+    const [error, setError] = useState(null);
 
 
     // useEffect(() => {
@@ -52,11 +53,12 @@ const Home = () => {
                 const blogList = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 
                 // After fetching data, set the progress to 100%
-                setProgress(100);
+                // setProgress(100);
                 setLoading(false); // Stop loading
                 setBlogs(blogList);
             } catch (error) {
                 console.error('Error fetching blogs:', error);
+                setError('Failed to fetch blogs. Please try again.');
                 setLoading(false);
             }
         };
@@ -121,12 +123,19 @@ const Home = () => {
                     <div className="left-half1">
                         {/* <div className="blog-list-container-home-1"> */}
                         <h2 className="blog-list-heading-home">Upcoming Events</h2>
+                        {/* Display loading spinner while fetching */}
+                        {loading && <Spinner />}
+
+                        {/* Display error message if fetching fails */}
+                        {error && <p>{error}</p>}
+
                         {
-                            (loading) ?
-                                <>
-                                    <Spinner />
-                                </>
-                                :
+                            // (loading) ?
+                            //     <>
+                            //         <Spinner />
+                            //     </>
+                            //     :
+                            !loading && !error &&(
                                 notices.map((notice) => (
                                     <div key={notice.id} className="event-item-home">
                                         <div className="middle-section-link">
@@ -159,7 +168,7 @@ const Home = () => {
                                         </div>
                                     </div>
                                 ))
-
+                            )
                         }
                         {/* </div> */}
                     </div>
